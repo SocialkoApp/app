@@ -1,16 +1,19 @@
-# app
+<p align="center">
+  <a href="http://aikenahac.com/" target="_blank"><img src="https://cdn.aikenahac.com/socialko-assets/logo.svg" style="border-radius: 25px" width="200" alt="Socialko Logo" /></a>
+</p>
 
-A new Flutter project.
+<p align="center">Mobile app for <b>Socialko</b>, an open source social media app.</p>
 
-## Getting Started
+## Platforms
+- Android
+- iOS
 
-This project is a starting point for a Flutter application.
+## API Documentation
 
-A few resources to get you started if this is your first Flutter project:
+API documentation is available on the `/api` endpoint when running the [backend](https://github.com/SocialkoApp/backend) locally.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Running the app
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter run
+```
