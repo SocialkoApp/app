@@ -7,11 +7,13 @@ class SocialkoAuthInput extends StatelessWidget {
     required this.controller,
     required this.label,
     this.obscured = false,
+    this.suffixIcon,
   });
 
   final TextEditingController controller;
   final String label;
   final bool obscured;
+  final IconButton? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class SocialkoAuthInput extends StatelessWidget {
           cursorColor: AppAssets.colors.lightHighlight,
           decoration: AppAssets.styles.inputDecoration.copyWith(
             hintText: label,
+            suffixIcon: suffixIcon,
           ),
         ),
       ),
