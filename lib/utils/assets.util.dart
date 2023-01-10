@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppAssets {
   static AppColors colors = AppColors();
+  static AppImages images = AppImages();
+  static AppStyles styles = AppStyles();
 }
 
 class AppColors {
@@ -12,4 +14,21 @@ class AppColors {
   Color lightHighlight = const Color(0xff9B9B9B);
 
   Color primary = const Color(0xffB810C3);
+}
+
+class AppImages {
+  String logo = 'assets/logo.png';
+}
+
+class AppStyles {
+  final double borderRadius = 12.0;
+
+  final inputDecoration = const InputDecoration(
+    border: InputBorder.none,
+  );
+
+  final inputBoxDecoration = BoxDecoration(
+    color: AppAssets.colors.darkHighlight,
+    borderRadius: BorderRadius.circular(12.0),
+  );
 }
