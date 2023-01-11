@@ -143,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(top: 28.0),
                   child: Image.asset(
                     AppAssets.images.logo,
-                    width: 50.0,
+                    width: 40.0,
                   ),
                 ),
               ),

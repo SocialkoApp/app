@@ -1,3 +1,4 @@
+import 'package:app/screens/email_confirmation.screen.dart';
 import 'package:app/screens/home.screen.dart';
 import 'package:app/screens/register.screen.dart';
 import 'package:app/utils/assets.util.dart';
@@ -18,6 +19,8 @@ class App extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
+        EmailConfirmationScreen.routeName: (context) =>
+            const EmailConfirmationScreen(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.quicksandTextTheme(
