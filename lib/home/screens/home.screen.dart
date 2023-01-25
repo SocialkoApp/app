@@ -3,7 +3,6 @@ import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/auth/screens/loading.screen.dart';
 import 'package:app/utils/assets.util.dart';
-import 'package:app/widgets/button.widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,8 +46,6 @@ class _HomeScreenState extends State<HomeScreen> {
         cult = 'You\'re not in a cult';
       }
     });
-
-    print(profile.firstName);
   }
 
   void logout() {
