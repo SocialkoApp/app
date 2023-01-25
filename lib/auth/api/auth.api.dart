@@ -1,7 +1,7 @@
 import 'package:app/auth/api/email.auth.dart';
+import 'package:app/auth/api/login.auth.dart';
 import 'package:app/auth/api/register.auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import './login.auth.dart';
 
 const storage = FlutterSecureStorage();
 

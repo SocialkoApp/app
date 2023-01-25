@@ -11,7 +11,7 @@ class AppColors {
   Color darkHighlight = const Color(0xff252525);
 
   Color light = const Color(0xffF0F0F0);
-  Color lightHighlight = const Color(0xff9B9B9B);
+  Color lightHighlight = const Color(0xffD1D1D1);
 
   Color primary = const Color(0xffB810C3);
 }

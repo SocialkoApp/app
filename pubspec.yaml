@@ -18,6 +18,7 @@ dependencies:
   # JSON Management
   json_annotation: ^4.7.0
   json_serializable: ^6.5.4
+  build_runner: ^2.3.3
     
   # Storage
   flutter_secure_storage: ^7.0.1
