@@ -1,5 +1,5 @@
-import 'package:app/api/auth/email.auth.dart';
-import 'package:app/api/auth/register.auth.dart';
+import 'package:app/auth/api/email.auth.dart';
+import 'package:app/auth/api/register.auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import './login.auth.dart';
 

@@ -1,4 +1,4 @@
-import 'package:app/screens/login.screen.dart';
+import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/widgets/button.widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class EmailConfirmationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    void _handleOk() {
+    void handleOk() {
       Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
     }
 
@@ -44,7 +44,7 @@ class EmailConfirmationScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: SocialkoButton(
                   label: 'OK',
-                  onPressed: () => _handleOk(),
+                  onPressed: () => handleOk(),
                   width: width,
                   height: 50.0,
                 ),

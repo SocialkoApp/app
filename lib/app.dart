@@ -1,10 +1,10 @@
-import 'package:app/screens/email_confirmation.screen.dart';
-import 'package:app/screens/home.screen.dart';
-import 'package:app/screens/register.screen.dart';
+import 'package:app/auth/screens/email_confirmation.screen.dart';
+import 'package:app/home/screens/home.screen.dart';
+import 'package:app/auth/screens/register.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
-import 'package:app/screens/loading.screen.dart';
-import 'package:app/screens/login.screen.dart';
+import 'package:app/auth/screens/loading.screen.dart';
+import 'package:app/auth/screens/login.screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class App extends StatelessWidget {

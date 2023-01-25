@@ -1,5 +1,5 @@
-import 'package:app/api/api.client.dart';
-import 'package:app/api/auth/models/send_confirmation_email.dto.dart';
+import 'package:app/utils/api/api.client.dart';
+import 'package:app/auth/api/models/send_confirmation_email.dto.dart';
 
 class ConfirmEmail {
   Future<Map<String, dynamic>> sendConfirmationEmail(

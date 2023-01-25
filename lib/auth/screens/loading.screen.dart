@@ -1,6 +1,6 @@
-import 'package:app/api/api.dart';
-import 'package:app/screens/home.screen.dart';
-import 'package:app/screens/login.screen.dart';
+import 'package:app/utils/api/api.dart';
+import 'package:app/home/screens/home.screen.dart';
+import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 

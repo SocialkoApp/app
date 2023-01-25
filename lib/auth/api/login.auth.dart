@@ -1,5 +1,5 @@
-import 'package:app/api/api.client.dart';
-import 'package:app/api/auth/models/login.dto.dart';
+import 'package:app/utils/api/api.client.dart';
+import 'package:app/auth/api/models/login.dto.dart';
 
 class Login {
   Future<Map<String, dynamic>> login(LoginDto loginDto) async {

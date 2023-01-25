@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:app/api/exceptions/bad_request.exception.dart';
-import 'package:app/api/exceptions/forbidden.exception.dart';
+import 'package:app/utils/api/exceptions/bad_request.exception.dart';
+import 'package:app/utils/api/exceptions/forbidden.exception.dart';
 
 import './api.dart';
 

@@ -1,11 +1,11 @@
-import 'package:app/api/api.dart';
-import 'package:app/api/auth/models/register.dto.dart';
-import 'package:app/api/exceptions/bad_request.exception.dart';
-import 'package:app/api/exceptions/conflict.exception.dart';
-import 'package:app/screens/email_confirmation.screen.dart';
-import 'package:app/screens/login.screen.dart';
+import 'package:app/utils/api/api.dart';
+import 'package:app/auth/api/models/register.dto.dart';
+import 'package:app/utils/api/exceptions/bad_request.exception.dart';
+import 'package:app/utils/api/exceptions/conflict.exception.dart';
+import 'package:app/auth/screens/email_confirmation.screen.dart';
+import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/utils/assets.util.dart';
-import 'package:app/widgets/auth/input.widget.dart';
+import 'package:app/auth/widgets/input.widget.dart';
 import 'package:app/widgets/button.widget.dart';
 import 'package:flutter/material.dart';
 
