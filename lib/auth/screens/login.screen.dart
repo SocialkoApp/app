@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _handleLogin(LoginDto loginDto) async {
     try {
-      Overlay.of(context)?.insert(_loadingOverlay);
+      Overlay.of(context).insert(_loadingOverlay);
 
       LoginResponse response = LoginResponse.fromJson(
         await API.auth.login.login(loginDto),

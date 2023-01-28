@@ -20,7 +20,7 @@ ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
       cult: json['cult'] == null
           ? null
           : ProfileCult.fromJson(json['cult'] as Map<String, dynamic>),
-      updatedAt: json['updatedAt'] as String,
+      updatedAt: json['updatedAt'] as String?,
     );
 
 Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>

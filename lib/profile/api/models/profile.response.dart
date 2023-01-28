@@ -30,7 +30,7 @@ class ProfileResponse {
 
   final ProfileCult? cult;
 
-  final String updatedAt;
+  final String? updatedAt;
 
   factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
       _$ProfileResponseFromJson(json);
