@@ -1,7 +1,10 @@
 import 'package:app/home/api/models/post.response.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
+import 'package:app/home/widgets/post/image_post.widget.dart';
+import 'package:app/home/widgets/post/text_post.widget.dart';
 import 'package:app/profile/api/models/profile.response.dart';
+import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/auth/screens/loading.screen.dart';
 import 'package:app/utils/assets.util.dart';
@@ -52,27 +55,22 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  String assignProfilePicture() {
-    if (profile == null || profile!.profilePicture == null) {
+  String assignProfilePicture(ProfilePicture? pfp) {
+    if (pfp == null) {
       return 'https://cdn.socialko.cc/assets/default_pfp.png';
     }
 
-    return profile!.profilePicture!.url;
+    return pfp.url;
   }
 
   Widget separator() {
-    return const SizedBox(height: 10.0);
+    return const SizedBox(height: 15.0);
   }
 
   Widget postBuilder(i) {
     final post = posts[i];
 
-    return Text(
-      '${post.type} ${post.author.user.username}',
-      style: TextStyle(
-        color: AppAssets.colors.light,
-      ),
-    );
+    return post.type == "Image" ? ImagePost(post: post) : TextPost(post: post);
   }
 
   @override
@@ -86,14 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const SizedBox(height: 40.0),
           Header(
-            pfp: assignProfilePicture(),
+            pfp: assignProfilePicture(profile?.profilePicture),
             name: '${profile?.firstName} ${profile?.lastName}',
-            cult: '${profile?.cult?.cult.name}',
+            cult: '${profile?.cult?.cult?.name}',
             role: '${profile?.cult?.role}',
           ),
           const FeedText(),
           SizedBox(
-            height: height * 0.7,
+            height: height * 0.75,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: ListView.separated(

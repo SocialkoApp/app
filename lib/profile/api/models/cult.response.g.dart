@@ -7,7 +7,9 @@ part of 'cult.response.dart';
 // **************************************************************************
 
 ProfileCult _$ProfileCultFromJson(Map<String, dynamic> json) => ProfileCult(
-      cult: ProfileCultData.fromJson(json['cult'] as Map<String, dynamic>),
+      cult: json['cult'] == null
+          ? null
+          : ProfileCultData.fromJson(json['cult'] as Map<String, dynamic>),
       role: json['role'] as String,
     );
 

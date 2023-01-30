@@ -10,7 +10,7 @@ class ProfileCult {
     required this.role,
   });
 
-  final ProfileCultData cult;
+  final ProfileCultData? cult;
   final String role;
 
   factory ProfileCult.fromJson(Map<String, dynamic> json) =>
