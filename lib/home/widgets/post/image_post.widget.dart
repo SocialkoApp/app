@@ -24,31 +24,12 @@ class ImagePost extends StatelessWidget {
 
     String? descriptionCut() {
       if (post.description != null) {
-        if (post.description!.length > 90) {
-          return '${post.description!.substring(0, 77)}...';
+        if (post.description!.length > 55) {
+          return '${post.description!.substring(0, 52)}...';
         }
       }
 
       return post.description;
-    }
-
-    TextSpan showMoreSpan() {
-      if (post.description != null) {
-        if (post.description!.length > 90) {
-          return TextSpan(
-            text: 'Show more',
-            style: TextStyle(
-              color: AppAssets.colors.primary,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => {
-                    print('Tapped show more'),
-                  },
-          );
-        }
-      }
-
-      return const TextSpan();
     }
 
     return Container(
@@ -93,19 +74,10 @@ class ImagePost extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  color: AppAssets.colors.light,
-                ),
-                children: [
-                  TextSpan(
-                    text: descriptionCut(),
-                  ),
-                  showMoreSpan(),
-                ],
-              ),
+            padding: const EdgeInsets.only(right: 12.0),
+            child: Text(
+              '${descriptionCut()}',
+              style: TextStyle(color: AppAssets.colors.light),
             ),
           ),
           PostActions(post: post),
