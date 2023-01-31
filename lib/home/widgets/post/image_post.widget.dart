@@ -1,9 +1,11 @@
+import 'package:app/home/widgets/post/actions_row.widget.dart';
 import 'package:app/home/widgets/post/post_author.widget.dart';
 import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:app/home/api/models/post.response.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 class ImagePost extends StatelessWidget {
   const ImagePost({super.key, required this.post});
@@ -54,43 +56,45 @@ class ImagePost extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppAssets.styles.borderRadius),
         color: AppAssets.colors.darkHighlight,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PostAuthor(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: PostAuthor(
               pfp: assignProfilePicture(post.author.profilePicture),
               name: '${post.author.firstName} ${post.author.lastName}',
               role: '${post.author.cult?.role}',
             ),
-            const SizedBox(height: 10.0),
-            Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      AppAssets.styles.borderRadius * 2,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppAssets.colors.dark,
-                        blurRadius: 5.0,
-                        offset: const Offset(5.0, 1.0),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                      AppAssets.styles.borderRadius,
-                    ),
-                    child: Image.network('${post.image?.url}'),
-                  ),
+          ),
+          const SizedBox(height: 10.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  AppAssets.styles.borderRadius * 2,
                 ),
-              ],
+                boxShadow: [
+                  BoxShadow(
+                    color: AppAssets.colors.dark,
+                    blurRadius: 5.0,
+                    offset: const Offset(5.0, 1.0),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  AppAssets.styles.borderRadius,
+                ),
+                child: Image.network('${post.image?.url}'),
+              ),
             ),
-            const SizedBox(height: 10.0),
-            RichText(
+          ),
+          const SizedBox(height: 10.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: RichText(
               text: TextSpan(
                 style: TextStyle(
                   color: AppAssets.colors.light,
@@ -103,8 +107,9 @@ class ImagePost extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          PostActions(post: post),
+        ],
       ),
     );
   }
