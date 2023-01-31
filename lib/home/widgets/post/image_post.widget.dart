@@ -22,8 +22,8 @@ class ImagePost extends StatelessWidget {
 
     String? descriptionCut() {
       if (post.description != null) {
-        if (post.description!.length > 102) {
-          return '${post.description!.substring(0, 89)}...';
+        if (post.description!.length > 90) {
+          return '${post.description!.substring(0, 77)}...';
         }
       }
 
@@ -32,7 +32,7 @@ class ImagePost extends StatelessWidget {
 
     TextSpan showMoreSpan() {
       if (post.description != null) {
-        if (post.description!.length > 102) {
+        if (post.description!.length > 90) {
           return TextSpan(
             text: 'Show more',
             style: TextStyle(
@@ -49,54 +49,63 @@ class ImagePost extends StatelessWidget {
       return const TextSpan();
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        PostAuthor(
-          pfp: assignProfilePicture(post.author.profilePicture),
-          name: '${post.author.firstName} ${post.author.lastName}',
-          role: '${post.author.cult?.role}',
-        ),
-        const SizedBox(height: 10.0),
-        Stack(
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppAssets.styles.borderRadius),
+        color: AppAssets.colors.darkHighlight,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  AppAssets.styles.borderRadius * 2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppAssets.colors.lightHighlight,
-                    blurRadius: 5.0,
-                    offset: const Offset(5.0, 1.0),
+            PostAuthor(
+              pfp: assignProfilePicture(post.author.profilePicture),
+              name: '${post.author.firstName} ${post.author.lastName}',
+              role: '${post.author.cult?.role}',
+            ),
+            const SizedBox(height: 10.0),
+            Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      AppAssets.styles.borderRadius * 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppAssets.colors.dark,
+                        blurRadius: 5.0,
+                        offset: const Offset(5.0, 1.0),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  AppAssets.styles.borderRadius,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      AppAssets.styles.borderRadius,
+                    ),
+                    child: Image.network('${post.image?.url}'),
+                  ),
                 ),
-                child: Image.network('${post.image?.url}'),
+              ],
+            ),
+            const SizedBox(height: 10.0),
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  color: AppAssets.colors.light,
+                ),
+                children: [
+                  TextSpan(
+                    text: descriptionCut(),
+                  ),
+                  showMoreSpan(),
+                ],
               ),
             ),
           ],
         ),
-        const SizedBox(height: 10.0),
-        RichText(
-          text: TextSpan(
-            style: TextStyle(
-              color: AppAssets.colors.light,
-            ),
-            children: [
-              TextSpan(
-                text: descriptionCut(),
-              ),
-              showMoreSpan(),
-            ],
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

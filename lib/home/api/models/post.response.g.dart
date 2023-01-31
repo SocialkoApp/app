@@ -14,6 +14,7 @@ PostResponse _$PostResponseFromJson(Map<String, dynamic> json) => PostResponse(
       downvotes: (json['downvotes'] as List<dynamic>)
           .map((e) => ProfileResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
+      title: json['title'] as String?,
       description: json['description'] as String?,
       image: json['image'] == null
           ? null
@@ -29,6 +30,7 @@ Map<String, dynamic> _$PostResponseToJson(PostResponse instance) =>
       'id': instance.id,
       'upvotes': instance.upvotes,
       'downvotes': instance.downvotes,
+      'title': instance.title,
       'description': instance.description,
       'author': instance.author,
       'image': instance.image,

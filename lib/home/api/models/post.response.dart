@@ -10,6 +10,7 @@ class PostResponse {
     required this.id,
     required this.upvotes,
     required this.downvotes,
+    required this.title,
     required this.description,
     required this.image,
     required this.author,
@@ -23,6 +24,7 @@ class PostResponse {
   final List<ProfileResponse> upvotes;
   final List<ProfileResponse> downvotes;
 
+  final String? title;
   final String? description;
 
   final ProfileResponse author;
