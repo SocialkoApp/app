@@ -2,10 +2,8 @@ import 'package:app/home/widgets/post/actions_row.widget.dart';
 import 'package:app/home/widgets/post/post_author.widget.dart';
 import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/assets.util.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:app/home/api/models/post.response.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 
 class ImagePost extends StatelessWidget {
   const ImagePost({super.key, required this.post});
@@ -24,8 +22,8 @@ class ImagePost extends StatelessWidget {
 
     String? descriptionCut() {
       if (post.description != null) {
-        if (post.description!.length > 55) {
-          return '${post.description!.substring(0, 52)}...';
+        if (post.description!.length > 50) {
+          return '${post.description!.substring(0, 48)}...';
         }
       }
 
@@ -74,7 +72,7 @@ class ImagePost extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           Padding(
-            padding: const EdgeInsets.only(right: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               '${descriptionCut()}',
               style: TextStyle(color: AppAssets.colors.light),
