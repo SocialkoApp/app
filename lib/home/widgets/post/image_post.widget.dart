@@ -1,14 +1,14 @@
+import 'package:app/home/utils/post.data.dart';
 import 'package:app/home/widgets/post/actions_row.widget.dart';
 import 'package:app/home/widgets/post/post_author.widget.dart';
 import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
-import 'package:app/home/api/models/post.response.dart';
 
 class ImagePost extends StatelessWidget {
   const ImagePost({super.key, required this.post});
 
-  final PostResponse post;
+  final PostData post;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,13 @@ class ImagePost extends StatelessWidget {
     }
 
     String? descriptionCut() {
-      if (post.description != null) {
-        if (post.description!.length > 50) {
-          return '${post.description!.substring(0, 48)}...';
+      if (post.data.description != null) {
+        if (post.data.description!.length > 50) {
+          return '${post.data.description!.substring(0, 48)}...';
         }
       }
 
-      return post.description;
+      return post.data.description;
     }
 
     return Container(
@@ -41,9 +41,10 @@ class ImagePost extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: PostAuthor(
-              pfp: assignProfilePicture(post.author.profilePicture),
-              name: '${post.author.firstName} ${post.author.lastName}',
-              role: '${post.author.cult?.role}',
+              pfp: assignProfilePicture(post.data.author.profilePicture),
+              name:
+                  '${post.data.author.firstName} ${post.data.author.lastName}',
+              role: '${post.data.author.cult?.role}',
             ),
           ),
           const SizedBox(height: 10.0),
@@ -66,7 +67,7 @@ class ImagePost extends StatelessWidget {
                 borderRadius: BorderRadius.circular(
                   AppAssets.styles.borderRadius,
                 ),
-                child: Image.network('${post.image?.url}'),
+                child: Image.network('${post.data.image?.url}'),
               ),
             ),
           ),

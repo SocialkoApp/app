@@ -1,32 +1,12 @@
-import 'package:app/home/api/map_profile.util.dart';
-import 'package:app/home/api/models/post.response.dart';
-import 'package:app/utils/api/api.dart';
+import 'package:app/home/utils/post.data.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class PostActions extends StatefulWidget {
-  PostActions({super.key, required this.post});
+class PostActions extends StatelessWidget {
+  const PostActions({super.key, required this.post});
 
-  PostResponse post;
-
-  @override
-  State<PostActions> createState() => _PostActionsState();
-}
-
-class _PostActionsState extends State<PostActions> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void votePost(VoteType type) async {
-    final vote = await API.home.posts.vote(widget.post.id, type);
-
-    setState(() {
-      widget.post = mapPost(vote);
-    });
-  }
+  final PostData post;
 
   @override
   Widget build(BuildContext context) {
@@ -37,25 +17,31 @@ class _PostActionsState extends State<PostActions> {
         Row(
           children: [
             IconButton(
-              onPressed: () => votePost(VoteType.upvote),
+              onPressed: () => post.vote(post.data.id, "upvote"),
               icon: Icon(
                 IconlyBold.arrowUp,
-                color: AppAssets.colors.light,
+                color: post.upvoted
+                    ? AppAssets.colors.primary
+                    : AppAssets.colors.light,
               ),
             ),
             Text(
-              widget.post.score.toString(),
+              post.data.score.toString(),
               style: TextStyle(
-                color: AppAssets.colors.light,
+                color: post.upvoted || post.downvoted
+                    ? AppAssets.colors.primary
+                    : AppAssets.colors.light,
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             IconButton(
-              onPressed: () => votePost(VoteType.downvote),
+              onPressed: () => post.vote(post.data.id, "downvote"),
               icon: Icon(
                 IconlyBold.arrowDown,
-                color: AppAssets.colors.light,
+                color: post.downvoted
+                    ? AppAssets.colors.primary
+                    : AppAssets.colors.light,
               ),
             ),
             IconButton(
@@ -85,9 +71,4 @@ class _PostActionsState extends State<PostActions> {
       ],
     );
   }
-}
-
-enum VoteType {
-  upvote,
-  downvote,
 }

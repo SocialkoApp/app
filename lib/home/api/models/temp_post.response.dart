@@ -8,8 +8,7 @@ part 'temp_post.response.g.dart';
 class TempPostResponse {
   TempPostResponse({
     required this.id,
-    required this.upvotes,
-    required this.downvotes,
+    required this.votes,
     required this.title,
     required this.description,
     required this.image,
@@ -21,8 +20,7 @@ class TempPostResponse {
 
   final String id;
 
-  final List<Map<String, dynamic>> upvotes;
-  final List<Map<String, dynamic>> downvotes;
+  final List<Map<String, dynamic>> votes;
 
   final String? title;
   final String? description;

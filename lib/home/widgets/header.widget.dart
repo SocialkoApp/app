@@ -1,4 +1,4 @@
-import 'package:app/auth/screens/loading.screen.dart';
+import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class Header extends StatelessWidget {
     void logout() {
       API.auth.deleteToken();
       Navigator.of(context).pushReplacementNamed(
-        LoadingScreen.routeName,
+        InitializingScreen.routeName,
       );
     }
 
