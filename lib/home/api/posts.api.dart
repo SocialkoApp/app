@@ -1,4 +1,3 @@
-import 'package:app/home/widgets/post/actions_row.widget.dart';
 import 'package:app/utils/api/api.client.dart';
 
 class PostsApi {
@@ -8,8 +7,8 @@ class PostsApi {
     return response;
   }
 
-  Future<Map<String, dynamic>> vote(String id, VoteType type) async {
-    final response = await ApiClient.put('/posts/${type.name}/$id');
+  Future<Map<String, dynamic>> vote(String id, String type) async {
+    final response = await ApiClient.put('/posts/$type/$id');
 
     return response;
   }

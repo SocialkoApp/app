@@ -4,10 +4,10 @@ import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
+class InitializingScreen extends StatelessWidget {
+  const InitializingScreen({super.key});
 
-  static String routeName = '/loading';
+  static String routeName = '/initializing';
 
   void _checkAuthentication(BuildContext context) async {
     if (!await API.auth.isLoggedIn()) {

@@ -4,10 +4,10 @@ import 'package:app/auth/api/models/login.response.dart';
 import 'package:app/auth/api/models/send_confirmation_email.dto.dart';
 import 'package:app/utils/api/exceptions/bad_request.exception.dart';
 import 'package:app/utils/api/exceptions/forbidden.exception.dart';
-import 'package:app/auth/screens/loading.screen.dart';
+import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/auth/widgets/input.widget.dart';
-import 'package:app/widgets/button.widget.dart';
+import 'package:app/common/button.widget.dart';
 import 'package:flutter/material.dart';
 
 import 'register.screen.dart';
@@ -41,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _showErrorSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        backgroundColor: AppAssets.colors.dark,
         content: Center(
           heightFactor: 1,
           child: Text(message),
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
         .sendConfirmationEmail(SendEmailConfirmationDto(email: email));
     await showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (ctx) => AlertDialog(
         title: const Text('Email sent'),
         content:
             const Text('The confirmation link has been sent to your email'),
@@ -85,9 +86,15 @@ class _LoginScreenState extends State<LoginScreen> {
     } on ForbiddenException {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          backgroundColor: AppAssets.colors.dark,
           content: Row(
             children: [
-              const Text('You didn\'t confirm your email'),
+              Text(
+                'You didn\'t confirm your email',
+                style: TextStyle(
+                  color: AppAssets.colors.light,
+                ),
+              ),
               const Spacer(),
               GestureDetector(
                 onTap: () => _handleResendEmailConfirmation(loginDto.username),
@@ -116,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
   );
 
   void _redirectLoading() {
-    Navigator.of(context).pushReplacementNamed(LoadingScreen.routeName);
+    Navigator.of(context).pushReplacementNamed(InitializingScreen.routeName);
   }
 
   void _handleRedirectRegister() {

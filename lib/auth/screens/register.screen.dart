@@ -6,7 +6,7 @@ import 'package:app/auth/screens/email_confirmation.screen.dart';
 import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/auth/widgets/input.widget.dart';
-import 'package:app/widgets/button.widget.dart';
+import 'package:app/common/button.widget.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {

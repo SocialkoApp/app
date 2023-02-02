@@ -3,7 +3,7 @@ import 'package:app/home/screens/home.screen.dart';
 import 'package:app/auth/screens/register.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
-import 'package:app/auth/screens/loading.screen.dart';
+import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/auth/screens/login.screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,9 +13,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: LoadingScreen.routeName,
+      initialRoute: InitializingScreen.routeName,
       routes: {
-        LoadingScreen.routeName: (context) => const LoadingScreen(),
+        InitializingScreen.routeName: (context) => const InitializingScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
