@@ -4,7 +4,6 @@ import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 import 'package:app/home/api/models/post.response.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 
 class TextPost extends StatelessWidget {
   const TextPost({super.key, required this.post});

@@ -1,3 +1,5 @@
+import 'package:app/auth/screens/loading.screen.dart';
+import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,13 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void logout() {
+      API.auth.deleteToken();
+      Navigator.of(context).pushReplacementNamed(
+        LoadingScreen.routeName,
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Row(
@@ -62,7 +71,7 @@ class Header extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => {},
+            onPressed: () => logout(),
             icon: Icon(
               Icons.settings,
               size: 35.0,

@@ -1,3 +1,4 @@
+import 'package:app/home/api/map_profile.util.dart';
 import 'package:app/home/api/models/post.response.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
@@ -6,7 +7,6 @@ import 'package:app/home/widgets/post/text_post.widget.dart';
 import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/api/api.dart';
-import 'package:app/auth/screens/loading.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 
@@ -44,15 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final p = await API.home.posts.get();
 
     setState(() {
-      posts = p.map((e) => PostResponse.fromJson(e)).toList();
+      posts = mapPosts(p);
     });
-  }
-
-  void logout() {
-    API.auth.deleteToken();
-    Navigator.of(context).pushReplacementNamed(
-      LoadingScreen.routeName,
-    );
   }
 
   String assignProfilePicture(ProfilePicture? pfp) {
