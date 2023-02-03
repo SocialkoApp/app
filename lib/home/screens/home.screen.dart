@@ -19,14 +19,6 @@ class HomeScreen extends ConsumerWidget {
 
   static String routeName = '/';
 
-  String assignProfilePicture(ProfilePicture? pfp) {
-    if (pfp == null) {
-      return 'https://cdn.socialko.cc/assets/default_pfp.png';
-    }
-
-    return pfp.url;
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final p = ref.watch(meProvider);
@@ -41,10 +33,7 @@ class HomeScreen extends ConsumerWidget {
           children: [
             const SizedBox(height: 40.0),
             Header(
-              pfp: assignProfilePicture(profile.profilePicture),
-              name: '${profile.firstName} ${profile.lastName}',
-              cult: '${profile.cult?.cult?.name}',
-              role: '${profile.cult?.role}',
+              profile: profile,
             ),
             const FeedText(),
             profile.cult != null

@@ -1,4 +1,6 @@
 import 'package:app/common/screens/initializing.screen.dart';
+import 'package:app/profile/api/models/profile.response.dart';
+import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +8,10 @@ import 'package:flutter/material.dart';
 class Header extends StatelessWidget {
   const Header({
     super.key,
-    required this.pfp,
-    required this.name,
-    required this.cult,
-    required this.role,
+    required this.profile,
   });
 
-  final String pfp;
-  final String name;
-  final String cult;
-  final String role;
+  final ProfileResponse profile;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +21,22 @@ class Header extends StatelessWidget {
         InitializingScreen.routeName,
         (Route<dynamic> route) => false,
       );
+    }
+
+    String assignProfilePicture(ProfilePicture? pfp) {
+      if (pfp == null) {
+        return 'https://cdn.socialko.cc/assets/default_pfp.png';
+      }
+
+      return pfp.url;
+    }
+
+    String cultMembership() {
+      if (profile.cult != null) {
+        return '${profile.cult?.cult?.name} [${profile.cult?.role}]';
+      }
+
+      return 'No cult';
     }
 
     return Padding(
@@ -39,7 +51,7 @@ class Header extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(50.0),
                   child: Image.network(
-                    pfp,
+                    assignProfilePicture(profile.profilePicture),
                     width: 55.0,
                     height: 55.0,
                     fit: BoxFit.cover,
@@ -51,7 +63,7 @@ class Header extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      '${profile.firstName} ${profile.lastName}',
                       style: TextStyle(
                         fontSize: 14,
                         color: AppAssets.colors.light,
@@ -59,7 +71,7 @@ class Header extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '$cult [$role]',
+                      cultMembership(),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppAssets.colors.lightHighlight,
