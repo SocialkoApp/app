@@ -1,7 +1,6 @@
 import 'package:app/home/api/map_profile.util.dart';
 import 'package:app/home/api/models/post.model.dart';
 import 'package:app/home/api/models/vote.model.dart';
-import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
