@@ -21,8 +21,9 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     void logout() {
       API.auth.deleteToken();
-      Navigator.of(context).pushReplacementNamed(
+      Navigator.of(context).pushNamedAndRemoveUntil(
         InitializingScreen.routeName,
+        (Route<dynamic> route) => false,
       );
     }
 

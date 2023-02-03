@@ -7,6 +7,12 @@ class PostsApi {
     return response;
   }
 
+  Future<Map<String, dynamic>> getSingle(String id) async {
+    final response = await ApiClient.get('/posts/$id');
+
+    return response;
+  }
+
   Future<Map<String, dynamic>> vote(String id, String type) async {
     final response = await ApiClient.put('/posts/$type/$id');
 

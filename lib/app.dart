@@ -1,6 +1,7 @@
 import 'package:app/auth/screens/email_confirmation.screen.dart';
 import 'package:app/home/screens/home.screen.dart';
 import 'package:app/auth/screens/register.screen.dart';
+import 'package:app/home/screens/post.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 import 'package:app/common/screens/initializing.screen.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
+        PostScreen.routeName: (context) => const PostScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),
       },

@@ -10,11 +10,14 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          'Error: $error',
-          style: TextStyle(
-            color: AppAssets.colors.light,
-            fontSize: 22.0,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(
+            'Error: $error',
+            style: TextStyle(
+              color: AppAssets.colors.light,
+              fontSize: 22.0,
+            ),
           ),
         ),
       ),

@@ -9,17 +9,19 @@ class InitializingScreen extends StatelessWidget {
 
   static String routeName = '/initializing';
 
-  void _checkAuthentication(BuildContext context) async {
-    if (!await API.auth.isLoggedIn()) {
-      Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-    } else {
-      Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    _checkAuthentication(context);
+    void checkAuthentication() async {
+      if (await API.auth.isLoggedIn()) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            HomeScreen.routeName, (Route<dynamic> route) => false);
+      } else {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            LoginScreen.routeName, (Route<dynamic> route) => false);
+      }
+    }
+
+    checkAuthentication();
 
     return Center(
       child: Image.asset(

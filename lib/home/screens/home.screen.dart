@@ -1,6 +1,7 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/home/providers/posts.provider.dart';
+import 'package:app/home/screens/post.screen.dart';
 import 'package:app/home/utils/post.data.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
@@ -38,6 +39,14 @@ class HomeScreen extends ConsumerWidget {
 
     void votePost(String id, String type) {
       ref.read(asyncPostsProvider.notifier).votePost(id, type);
+    }
+
+    void openPost(String id) {
+      Navigator.pushReplacementNamed(
+        context,
+        PostScreen.routeName,
+        arguments: Args(id),
+      );
     }
 
     return pr.when(
@@ -81,9 +90,12 @@ class HomeScreen extends ConsumerWidget {
                         vote: votePost,
                       );
 
-                      return post.data.type == "Image"
-                          ? ImagePost(post: post)
-                          : TextPost(post: post);
+                      return GestureDetector(
+                        onTap: () => openPost(post.data.id),
+                        child: post.data.type == "Image"
+                            ? ImagePost(post: post)
+                            : TextPost(post: post),
+                      );
                     },
                     separatorBuilder: (c, i) => separator(),
                     itemCount: posts.length,

@@ -21,8 +21,8 @@ class AuthAPI {
     return await storage.read(key: 'token') ?? '';
   }
 
-  Future<bool> isLoggedIn() {
-    return storage.containsKey(key: 'token');
+  Future<bool> isLoggedIn() async {
+    return await storage.containsKey(key: 'token');
   }
 
   Future<void> deleteToken() async {

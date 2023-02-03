@@ -1,3 +1,4 @@
+import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/auth/api/models/login.dto.dart';
 import 'package:app/auth/api/models/login.response.dart';
@@ -26,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _password = TextEditingController();
 
   bool passwordObscured = true;
+  bool loading = false;
 
   @override
   void initState() {
@@ -41,19 +43,20 @@ class _LoginScreenState extends State<LoginScreen> {
   void _showErrorSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: AppAssets.colors.dark,
+        backgroundColor: AppAssets.colors.darkHighlight,
         content: Center(
           heightFactor: 1,
-          child: Text(message),
+          child: Text(
+            message,
+            style: TextStyle(color: AppAssets.colors.light),
+          ),
         ),
       ),
     );
   }
 
-  void _handleResendEmailConfirmation(String email) async {
-    await API.auth.email
-        .sendConfirmationEmail(SendEmailConfirmationDto(email: email));
-    await showDialog(
+  void _showResentDialog() {
+    showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Email sent'),
@@ -69,16 +72,22 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void _handleResendEmailConfirmation(String email) async {
+    await API.auth.email
+        .sendConfirmationEmail(SendEmailConfirmationDto(email: email));
+    _showResentDialog();
+  }
+
   void _handleLogin(LoginDto loginDto) async {
     try {
-      Overlay.of(context).insert(_loadingOverlay);
+      setState(() => loading = true);
 
       LoginResponse response = LoginResponse.fromJson(
         await API.auth.login.login(loginDto),
       );
 
       await API.auth.saveToken(response.accessToken);
-      _loadingOverlay.remove();
+      setState(() => loading = false);
 
       _redirectLoading();
     } on BadRequestException {
@@ -86,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } on ForbiddenException {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: AppAssets.colors.dark,
+          backgroundColor: AppAssets.colors.darkHighlight,
           content: Row(
             children: [
               Text(
@@ -114,14 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  final _loadingOverlay = OverlayEntry(
-    builder: (context) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    },
-  );
-
   void _redirectLoading() {
     Navigator.of(context).pushReplacementNamed(InitializingScreen.routeName);
   }
@@ -134,6 +135,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    if (loading) return const LoadingScreen();
 
     return Scaffold(
       backgroundColor: AppAssets.colors.dark,

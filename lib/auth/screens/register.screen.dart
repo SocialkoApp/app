@@ -64,9 +64,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _showErrorSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        backgroundColor: AppAssets.colors.darkHighlight,
         content: Center(
           heightFactor: 1,
-          child: Text(message),
+          child: Text(
+            message,
+            style: TextStyle(
+              color: AppAssets.colors.light,
+            ),
+          ),
         ),
       ),
     );
