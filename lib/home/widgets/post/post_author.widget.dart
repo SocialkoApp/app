@@ -1,17 +1,15 @@
+import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/utils/assets.util.dart';
+import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
 
 class PostAuthor extends StatelessWidget {
   const PostAuthor({
     super.key,
-    required this.pfp,
-    required this.name,
-    required this.role,
+    required this.profile,
   });
 
-  final String pfp;
-  final String name;
-  final String role;
+  final ProfileResponse profile;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class PostAuthor extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(50.0),
             child: Image.network(
-              pfp,
+              assignProfilePicture(profile.profilePicture),
               width: 55.0,
               height: 55.0,
               fit: BoxFit.cover,
@@ -33,7 +31,7 @@ class PostAuthor extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name,
+                '${profile.firstName} ${profile.lastName}',
                 style: TextStyle(
                   fontSize: 14,
                   color: AppAssets.colors.light,
@@ -41,7 +39,7 @@ class PostAuthor extends StatelessWidget {
                 ),
               ),
               Text(
-                role,
+                '@${profile.user.username} • ${profile.cult?.role}',
                 style: TextStyle(
                   fontSize: 12,
                   color: AppAssets.colors.lightHighlight,

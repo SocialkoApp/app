@@ -1,8 +1,8 @@
 import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
-import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
+import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -23,20 +23,12 @@ class Header extends StatelessWidget {
       );
     }
 
-    String assignProfilePicture(ProfilePicture? pfp) {
-      if (pfp == null) {
-        return 'https://cdn.socialko.cc/assets/default_pfp.png';
-      }
-
-      return pfp.url;
-    }
-
-    String cultMembership() {
+    String subtitle() {
       if (profile.cult != null) {
-        return '${profile.cult?.cult?.name} [${profile.cult?.role}]';
+        return '@${profile.user.username} • ${profile.cult?.cult?.name} [${profile.cult?.role}]';
       }
 
-      return 'No cult';
+      return '@${profile.user.username}';
     }
 
     return Padding(
@@ -71,7 +63,7 @@ class Header extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      cultMembership(),
+                      subtitle(),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppAssets.colors.lightHighlight,

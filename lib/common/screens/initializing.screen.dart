@@ -11,13 +11,16 @@ class InitializingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void redirect(String screen) {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(screen, (Route<dynamic> route) => false);
+    }
+
     void checkAuthentication() async {
       if (await API.auth.isLoggedIn()) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            HomeScreen.routeName, (Route<dynamic> route) => false);
+        redirect(HomeScreen.routeName);
       } else {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            LoginScreen.routeName, (Route<dynamic> route) => false);
+        redirect(LoginScreen.routeName);
       }
     }
 

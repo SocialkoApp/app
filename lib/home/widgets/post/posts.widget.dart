@@ -22,7 +22,7 @@ class PostsWidget extends ConsumerWidget {
     }
 
     void openPost(String id) {
-      Navigator.pushReplacementNamed(
+      Navigator.pushNamed(
         context,
         PostScreen.routeName,
         arguments: Args(id),

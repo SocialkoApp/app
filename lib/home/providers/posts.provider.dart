@@ -20,6 +20,12 @@ class AsyncPosts extends _$AsyncPosts {
     return _fetchPosts();
   }
 
+  FutureOr<PostModel> fetchPost(String id) async {
+    final resp = await API.home.posts.getSingle(id);
+
+    return mapPost(resp);
+  }
+
   Future<void> votePost(String id, String type) async {
     state = await AsyncValue.guard(() async {
       await API.home.posts.vote(id, type);
@@ -68,3 +74,10 @@ class AsyncPosts extends _$AsyncPosts {
     return downvoted;
   }
 }
+
+final postsFamily =
+    FutureProvider.family<PostModel, String>((ref, postId) async {
+  final posts = ref.read(asyncPostsProvider.notifier);
+  // final posts = ref.watch(asyncPostsProvider);
+  return await posts.fetchPost(postId);
+});

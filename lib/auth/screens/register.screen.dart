@@ -48,8 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
     try {
       await API.auth.register.register(registerDto);
-      Navigator.of(context)
-          .pushReplacementNamed(EmailConfirmationScreen.routeName);
+      _handleRedirectEmailConfirm();
     } on BadRequestException {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -80,6 +79,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _handleRedirectLogin() {
     Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+  }
+
+  void _handleRedirectEmailConfirm() {
+    Navigator.of(context)
+        .pushReplacementNamed(EmailConfirmationScreen.routeName);
   }
 
   @override
