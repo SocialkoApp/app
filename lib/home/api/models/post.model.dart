@@ -1,3 +1,4 @@
+import 'package:app/home/api/models/comment.model.dart';
 import 'package:app/home/api/models/image.response.dart';
 import 'package:app/home/api/models/vote.model.dart';
 import 'package:app/profile/api/models/profile.response.dart';
@@ -6,6 +7,7 @@ class PostModel {
   PostModel({
     required this.id,
     required this.votes,
+    required this.comments,
     required this.title,
     required this.description,
     required this.image,
@@ -18,6 +20,7 @@ class PostModel {
   final String id;
 
   final List<VoteModel> votes;
+  final List<CommentModel> comments;
 
   final String? title;
   final String? description;

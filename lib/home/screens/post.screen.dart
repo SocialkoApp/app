@@ -1,6 +1,8 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
+import 'package:app/home/api/models/comment.model.dart';
 import 'package:app/home/providers/posts.provider.dart';
+import 'package:app/home/widgets/post/comment.widget.dart';
 import 'package:app/home/widgets/post/image/full.widget.dart';
 import 'package:app/home/widgets/post/post_author.widget.dart';
 import 'package:app/home/widgets/post/text/full.widget.dart';
@@ -22,6 +24,17 @@ class PostScreen extends ConsumerWidget {
 
     void goBack() {
       Navigator.of(context).pop();
+    }
+
+    List<Widget> renderComments(List<CommentModel> c) {
+      List<Widget> items = [];
+
+      for (int i = 0; i < c.length; i++) {
+        items.add(CommentWidget(c: c[i]));
+        items.add(const SizedBox(height: 20.0));
+      }
+
+      return items;
     }
 
     return post.when(
@@ -78,6 +91,9 @@ class PostScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 10.0),
+                Column(
+                  children: renderComments(p.comments),
+                ),
               ],
             ),
           ),

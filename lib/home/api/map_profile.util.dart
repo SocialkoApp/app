@@ -1,3 +1,4 @@
+import 'package:app/home/api/models/comment.model.dart';
 import 'package:app/home/api/models/post.model.dart';
 import 'package:app/home/api/models/temp_post.response.dart';
 import 'package:app/home/api/models/vote.model.dart';
@@ -7,6 +8,7 @@ PostModel mapPost(Map<String, dynamic> p) {
   final t = TempPostResponse.fromJson(p);
 
   final v = t.votes;
+  final c = t.comments;
 
   List<VoteModel> votes = v
       .map((p) => VoteModel(
@@ -15,9 +17,21 @@ PostModel mapPost(Map<String, dynamic> p) {
           ))
       .toList();
 
+  List<CommentModel> comments = c
+      .map(
+        (p) => CommentModel(
+          author: ProfileResponse.fromJson(
+            p["author"],
+          ),
+          content: p["content"],
+        ),
+      )
+      .toList();
+
   final PostModel post = PostModel(
     id: t.id,
     votes: votes,
+    comments: comments,
     title: t.title,
     description: t.description,
     image: t.image,

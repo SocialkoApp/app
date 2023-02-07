@@ -52,7 +52,7 @@ class PostActions extends StatelessWidget {
               ),
             ),
             Text(
-              '20',
+              post.data.comments.length.toString(),
               style: TextStyle(
                 color: AppAssets.colors.light,
                 fontSize: 18.0,

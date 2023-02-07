@@ -9,6 +9,7 @@ class TempPostResponse {
   TempPostResponse({
     required this.id,
     required this.votes,
+    required this.comments,
     required this.title,
     required this.description,
     required this.image,
@@ -21,6 +22,7 @@ class TempPostResponse {
   final String id;
 
   final List<Map<String, dynamic>> votes;
+  final List<Map<String, dynamic>> comments;
 
   final String? title;
   final String? description;

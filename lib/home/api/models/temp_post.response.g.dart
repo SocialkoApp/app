@@ -12,6 +12,9 @@ TempPostResponse _$TempPostResponseFromJson(Map<String, dynamic> json) =>
       votes: (json['votes'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
           .toList(),
+      comments: (json['comments'] as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       image: json['image'] == null
@@ -27,6 +30,7 @@ Map<String, dynamic> _$TempPostResponseToJson(TempPostResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'votes': instance.votes,
+      'comments': instance.comments,
       'title': instance.title,
       'description': instance.description,
       'author': instance.author,
