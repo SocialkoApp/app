@@ -3,8 +3,8 @@ import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/home/providers/posts.provider.dart';
 import 'package:app/home/screens/post.screen.dart';
 import 'package:app/home/utils/post.data.dart';
-import 'package:app/home/widgets/post/image_post.widget.dart';
-import 'package:app/home/widgets/post/text_post.widget.dart';
+import 'package:app/home/widgets/post/image/home.widget.dart';
+import 'package:app/home/widgets/post/text/home.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

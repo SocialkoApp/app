@@ -15,6 +15,7 @@ dependencies:
   # UI
   google_fonts: ^3.0.1
   flutter_iconly: ^1.0.2
+  flutter_markdown: ^0.6.13+1
 
   # JSON Management
   json_annotation: ^4.7.0
