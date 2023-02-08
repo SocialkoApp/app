@@ -36,36 +36,45 @@ class PostsWidget extends ConsumerWidget {
     return p.when(
       loading: () => const LoadingScreen(),
       error: (err, stack) => ErrorScreen(error: err),
-      data: (posts) => SizedBox(
-        height: height * 0.75,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, i) {
-              final data = posts[i];
-              final upvoted =
-                  ref.watch(asyncPostsProvider.notifier).isUpvoted(data.votes);
-              final downvoted = ref
-                  .watch(asyncPostsProvider.notifier)
-                  .isDownvoted(data.votes);
+      data: (posts) => Flexible(
+        flex: 1,
+        fit: FlexFit.tight,
+        child: SizedBox(
+          height: height * 0.75,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, i) {
+                  final data = posts[i];
+                  final upvoted = ref
+                      .watch(asyncPostsProvider.notifier)
+                      .isUpvoted(data.votes);
+                  final downvoted = ref
+                      .watch(asyncPostsProvider.notifier)
+                      .isDownvoted(data.votes);
 
-              final post = PostData(
-                data: data,
-                upvoted: upvoted,
-                downvoted: downvoted,
-                vote: votePost,
-              );
+                  final post = PostData(
+                    data: data,
+                    upvoted: upvoted,
+                    downvoted: downvoted,
+                    vote: votePost,
+                  );
 
-              return GestureDetector(
-                onTap: () => openPost(post.data.id),
-                child: post.data.type == "Image"
-                    ? ImagePost(post: post)
-                    : TextPost(post: post),
-              );
-            },
-            separatorBuilder: (c, i) => separator(),
-            itemCount: posts.length,
+                  return GestureDetector(
+                    onTap: () => openPost(post.data.id),
+                    child: post.data.type == "Image"
+                        ? ImagePost(post: post)
+                        : TextPost(post: post),
+                  );
+                },
+                separatorBuilder: (c, i) => separator(),
+                itemCount: posts.length,
+              ),
+            ),
           ),
         ),
       ),
