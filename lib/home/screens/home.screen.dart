@@ -28,20 +28,23 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: 40.0),
             Header(profile: profile),
             const FeedText(),
-            profile.cult != null
-                ? const PostsWidget()
-                : SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.7,
-                    child: Center(
-                      child: Text(
-                        'You are not in a cult',
-                        style: TextStyle(
-                          color: AppAssets.colors.light,
-                          fontSize: 18.0,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: profile.cult != null
+                  ? const PostsWidget()
+                  : SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      child: Center(
+                        child: Text(
+                          'You are not in a cult',
+                          style: TextStyle(
+                            color: AppAssets.colors.light,
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
+            ),
           ],
         ),
       ),

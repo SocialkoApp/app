@@ -1,14 +1,15 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
+import 'package:app/common/widgets/back.widget.dart';
 import 'package:app/home/api/models/comment.model.dart';
 import 'package:app/home/providers/posts.provider.dart';
 import 'package:app/home/widgets/post/comment.widget.dart';
 import 'package:app/home/widgets/post/image/full.widget.dart';
 import 'package:app/home/widgets/post/post_author.widget.dart';
 import 'package:app/home/widgets/post/text/full.widget.dart';
+import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostScreen extends ConsumerWidget {
@@ -22,10 +23,6 @@ class PostScreen extends ConsumerWidget {
 
     final post = ref.watch(postsFamily(args.id));
 
-    void goBack() {
-      Navigator.of(context).pop();
-    }
-
     List<Widget> renderComments(List<CommentModel> c) {
       List<Widget> items = [];
 
@@ -35,6 +32,14 @@ class PostScreen extends ConsumerWidget {
       }
 
       return items;
+    }
+
+    void openProfile(String username) {
+      Navigator.pushNamed(
+        context,
+        ProfileScreen.routeName,
+        arguments: ProfileArgs(username),
+      );
     }
 
     return post.when(
@@ -49,26 +54,7 @@ class PostScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 45.0),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => goBack(),
-                      icon: Icon(
-                        IconlyBold.arrowLeft2,
-                        color: AppAssets.colors.light,
-                        size: 30.0,
-                      ),
-                    ),
-                    Text(
-                      'Back',
-                      style: TextStyle(
-                        color: AppAssets.colors.light,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
+                const BackWidget(),
                 const SizedBox(height: 10.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -79,7 +65,10 @@ class PostScreen extends ConsumerWidget {
                 const SizedBox(height: 10.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: PostAuthor(profile: p.author),
+                  child: GestureDetector(
+                    onTap: () => openProfile(p.author.user.username),
+                    child: PostAuthor(profile: p.author),
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 p.type == "Image" ? FullImagePost(p: p) : FullTextPost(p: p),

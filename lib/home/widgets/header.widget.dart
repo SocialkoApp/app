@@ -1,5 +1,6 @@
 import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
+import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
@@ -31,6 +32,14 @@ class Header extends StatelessWidget {
       return '@${profile.user.username}';
     }
 
+    void openProfile(String username) {
+      Navigator.pushNamed(
+        context,
+        ProfileScreen.routeName,
+        arguments: ProfileArgs(username),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Row(
@@ -38,6 +47,7 @@ class Header extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
+            onTap: () => openProfile(profile.user.username),
             child: Row(
               children: [
                 ClipRRect(
@@ -82,7 +92,7 @@ class Header extends StatelessWidget {
               size: 35.0,
               color: AppAssets.colors.light,
             ),
-          )
+          ),
         ],
       ),
     );

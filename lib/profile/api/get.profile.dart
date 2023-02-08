@@ -6,4 +6,10 @@ class GetProfile {
 
     return response;
   }
+
+  Future<Map<String, dynamic>> profile(String username) async {
+    final response = await ApiClient.get('/profile/$username');
+
+    return response;
+  }
 }
