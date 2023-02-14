@@ -1,5 +1,10 @@
 import 'dart:convert';
+import 'package:app/utils/api/exceptions/unauthorized.exception.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_cropper/image_cropper.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+import 'dart:io';
 
 import 'package:app/utils/api/exceptions/bad_request.exception.dart';
 import 'package:app/utils/api/exceptions/forbidden.exception.dart';
@@ -166,5 +171,50 @@ class ApiClient {
     }
 
     return responseBody;
+  }
+
+  // POST function
+  // Sends JSON data to the app from the API
+  // Used for uploading images
+  static Future<Map<String, dynamic>> postImage(
+      String endpoint, File file) async {
+    final url = Uri.parse(apiUrl + endpoint);
+    final stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
+    final length = await file.length();
+
+    final headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    if (await API.auth.isLoggedIn()) {
+      headers.addAll({
+        'Authorization': 'Bearer ${await API.auth.getToken()}',
+      });
+    }
+
+    final request = http.MultipartRequest("POST", url);
+    final multipartFile = http.MultipartFile('file', stream, length,
+        filename: basename(file.path));
+
+    request.files.add(multipartFile);
+    request.headers.addAll(headers);
+
+    final response = await request.send();
+    final responseBody =
+        (await response.stream.transform(utf8.decoder).toList())[0];
+    final body = jsonDecode(responseBody);
+
+    if (response.statusCode > 299) {
+      switch (response.statusCode) {
+        case 400:
+          throw BadRequestException('Bad request');
+        case 401:
+          throw UnauthorizedException('Unauthorized');
+        case 403:
+          throw ForbiddenException('Forbidden');
+      }
+    }
+
+    return body;
   }
 }

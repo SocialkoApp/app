@@ -2,6 +2,7 @@ import 'package:app/auth/screens/email_confirmation.screen.dart';
 import 'package:app/home/screens/home.screen.dart';
 import 'package:app/auth/screens/register.screen.dart';
 import 'package:app/home/screens/post.screen.dart';
+import 'package:app/profile/screens/me.screen.dart';
 import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
         HomeScreen.routeName: (context) => const HomeScreen(),
         PostScreen.routeName: (context) => const PostScreen(),
         ProfileScreen.routeName: (context) => const ProfileScreen(),
+        MeScreen.routeName: (context) => const MeScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),
       },

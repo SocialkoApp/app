@@ -15,7 +15,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final p = ref.watch(meProvider);
+    final p = ref.watch(asyncMeProvider);
 
     return p.when(
       loading: () => const LoadingScreen(),

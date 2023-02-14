@@ -17,6 +17,10 @@ dependencies:
   flutter_iconly: ^1.0.2
   flutter_markdown: ^0.6.13+1
 
+  # Image Manipulation
+  image_picker: ^0.8.6+1
+  image_cropper: ^3.0.1
+
   # JSON Management
   json_annotation: ^4.7.0
   json_serializable: ^6.5.4

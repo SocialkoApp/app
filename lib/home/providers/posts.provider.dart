@@ -35,7 +35,7 @@ class AsyncPosts extends _$AsyncPosts {
   }
 
   bool isUpvoted(List<VoteModel> votes) {
-    final profile = ref.read(meProvider);
+    final profile = ref.read(asyncMeProvider);
 
     bool upvoted = false;
 
@@ -55,7 +55,7 @@ class AsyncPosts extends _$AsyncPosts {
   }
 
   bool isDownvoted(List<VoteModel> votes) {
-    final profile = ref.watch(meProvider);
+    final profile = ref.watch(asyncMeProvider);
 
     bool downvoted = false;
 

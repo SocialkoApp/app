@@ -1,6 +1,6 @@
 import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
-import 'package:app/profile/screens/profile.screen.dart';
+import 'package:app/profile/screens/me.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
@@ -33,11 +33,7 @@ class Header extends StatelessWidget {
     }
 
     void openProfile(String username) {
-      Navigator.pushNamed(
-        context,
-        ProfileScreen.routeName,
-        arguments: ProfileArgs(username),
-      );
+      Navigator.pushNamed(context, MeScreen.routeName);
     }
 
     return Padding(

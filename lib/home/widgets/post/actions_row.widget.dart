@@ -44,13 +44,12 @@ class PostActions extends StatelessWidget {
                     : AppAssets.colors.light,
               ),
             ),
-            IconButton(
-              onPressed: () => print('comment'),
-              icon: Icon(
-                IconlyBold.chat,
-                color: AppAssets.colors.light,
-              ),
+            const SizedBox(width: 10.0),
+            Icon(
+              IconlyBold.chat,
+              color: AppAssets.colors.light,
             ),
+            const SizedBox(width: 10.0),
             Text(
               post.data.comments.length.toString(),
               style: TextStyle(

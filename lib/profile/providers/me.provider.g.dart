@@ -29,13 +29,19 @@ class _SystemHash {
   }
 }
 
-String _$meHash() => r'f0fc6b6872f33b1e69ab6bf91a10157dbb27626a';
+String _$AsyncMeHash() => r'9436f9653292cbf91a9fb0feebf071903c4bb98a';
 
-/// See also [me].
-final meProvider = AutoDisposeFutureProvider<ProfileResponse>(
-  me,
-  name: r'meProvider',
+/// See also [AsyncMe].
+final asyncMeProvider =
+    AutoDisposeAsyncNotifierProvider<AsyncMe, ProfileResponse>(
+  AsyncMe.new,
+  name: r'asyncMeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$meHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$AsyncMeHash,
 );
-typedef MeRef = AutoDisposeFutureProviderRef<ProfileResponse>;
+typedef AsyncMeRef = AutoDisposeAsyncNotifierProviderRef<ProfileResponse>;
+
+abstract class _$AsyncMe extends AutoDisposeAsyncNotifier<ProfileResponse> {
+  @override
+  FutureOr<ProfileResponse> build();
+}

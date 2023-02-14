@@ -6,8 +6,10 @@ part 'profile_picture.response.g.dart';
 class ProfilePicture {
   ProfilePicture({
     required this.url,
+    this.id,
   });
 
+  final String? id;
   final String url;
 
   factory ProfilePicture.fromJson(Map<String, dynamic> json) =>
