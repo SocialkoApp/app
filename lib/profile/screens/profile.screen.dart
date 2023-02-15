@@ -1,9 +1,9 @@
 import 'package:app/common/screens/error.screen.dart';
-import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/common/widgets/back.widget.dart';
+import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/profile/providers/profile.provider.dart';
-import 'package:app/utils/api/api.dart';
+import 'package:app/profile/screens/me.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +20,9 @@ class ProfileScreen extends ConsumerWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    final profile = ref.watch(profileProvider.call(args.username));
-
-    void logout() {
-      API.auth.deleteToken();
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        InitializingScreen.routeName,
-        (Route<dynamic> route) => false,
-      );
-    }
+    final profile = args.me
+        ? ref.watch(asyncMeProvider)
+        : ref.watch(profileProvider.call(args.username));
 
     return profile.when(
       loading: () => const LoadingScreen(),
@@ -48,14 +42,20 @@ class ProfileScreen extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const BackWidget(),
-                    IconButton(
-                      onPressed: () => logout(),
-                      icon: Icon(
-                        Icons.settings,
-                        size: 35.0,
-                        color: AppAssets.colors.light,
-                      ),
-                    ),
+                    if (args.me)
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pushNamed(
+                          MeScreen.routeName,
+                        ),
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(
+                            color: AppAssets.colors.primary,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
                   ],
                 ),
                 const SizedBox(height: 20.0),
@@ -100,7 +100,11 @@ class ProfileScreen extends ConsumerWidget {
 }
 
 class ProfileArgs {
-  ProfileArgs(this.username);
+  ProfileArgs(
+    this.username, {
+    this.me = false,
+  });
 
   final String username;
+  final bool me;
 }

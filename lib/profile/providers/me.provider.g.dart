@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String _$AsyncMeHash() => r'9436f9653292cbf91a9fb0feebf071903c4bb98a';
+String _$AsyncMeHash() => r'60c407dfbbb893a8806c2657a651a0828031fab3';
 
 /// See also [AsyncMe].
 final asyncMeProvider =

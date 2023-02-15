@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:app/profile/api/models/profile.response.dart';
+import 'package:app/profile/api/models/update_profile.dto.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,6 +25,16 @@ class AsyncMe extends _$AsyncMe {
 
     state = await AsyncValue.guard(() async {
       await API.profile.update.profilePicture(file);
+
+      return _fetchMe();
+    });
+  }
+
+  Future<void> updateProfile(UpdateProfileDto body) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.profile.update.details(body);
 
       return _fetchMe();
     });
