@@ -16,6 +16,7 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_iconly: ^1.0.2
   flutter_markdown: ^0.6.13+1
+  flutter_expandable_fab: ^1.7.0
 
   # Image Manipulation
   image_picker: ^0.8.6+1

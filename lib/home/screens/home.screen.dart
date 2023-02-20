@@ -1,11 +1,14 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
+import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
+import 'package:app/home/widgets/home/create_post.widget.dart';
 import 'package:app/home/widgets/post/posts.widget.dart';
 import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -44,6 +47,13 @@ class HomeScreen extends ConsumerWidget {
                     ),
                   ),
           ],
+        ),
+        floatingActionButtonLocation: ExpandableFab.location,
+        floatingActionButton: CreatePostButton(
+          onPressedImage: () => Navigator.of(context).pushNamed(
+            CreateImagePost.routeName,
+          ),
+          onPressedText: () => {},
         ),
       ),
     );

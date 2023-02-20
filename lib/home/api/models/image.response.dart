@@ -6,8 +6,10 @@ part 'image.response.g.dart';
 class ImageResponse {
   ImageResponse({
     required this.url,
+    this.id,
   });
 
+  final String? id;
   final String url;
 
   factory ImageResponse.fromJson(Map<String, dynamic> json) =>

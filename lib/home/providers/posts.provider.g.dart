@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String _$AsyncPostsHash() => r'75d40b4ba7a55ddd64072e201f8364f7782ff1f1';
+String _$AsyncPostsHash() => r'8e332521cca5c6ab2e6391e1bf630c4b99d835f4';
 
 /// See also [AsyncPosts].
 final asyncPostsProvider =

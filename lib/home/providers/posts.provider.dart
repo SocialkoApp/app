@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:app/home/api/map_profile.util.dart';
+import 'package:app/home/api/models/create_post.dto.dart';
+import 'package:app/home/api/models/image.response.dart';
 import 'package:app/home/api/models/post.model.dart';
 import 'package:app/home/api/models/vote.model.dart';
 import 'package:app/profile/providers/me.provider.dart';
+import 'package:app/utils/api/api.client.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,6 +29,39 @@ class AsyncPosts extends _$AsyncPosts {
     final resp = await API.home.posts.getSingle(id);
 
     return mapPost(resp);
+  }
+
+  FutureOr<void> createPost(
+    String type, {
+    String? description,
+    String? title,
+    File? file,
+  }) async {
+    state = const AsyncValue.loading();
+
+    CreatePostDto dto = CreatePostDto(
+      type: type,
+      description: description,
+      title: title,
+    );
+
+    if (file != null) {
+      final uploaded =
+          ImageResponse.fromJson(await ApiClient.postImage('/files', file));
+
+      dto = CreatePostDto(
+        type: type,
+        description: description,
+        title: title,
+        imageId: uploaded.id,
+      );
+    }
+
+    state = await AsyncValue.guard(() async {
+      await API.home.posts.create(dto);
+
+      return _fetchPosts();
+    });
   }
 
   Future<void> votePost(String id, String type) async {

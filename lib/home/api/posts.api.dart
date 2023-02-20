@@ -1,3 +1,4 @@
+import 'package:app/home/api/models/create_post.dto.dart';
 import 'package:app/utils/api/api.client.dart';
 
 class PostsApi {
@@ -15,6 +16,12 @@ class PostsApi {
 
   Future<Map<String, dynamic>> vote(String id, String type) async {
     final response = await ApiClient.put('/posts/$type/$id');
+
+    return response;
+  }
+
+  Future<Map<String, dynamic>> create(CreatePostDto body) async {
+    final response = await ApiClient.post('/posts', body.toJson());
 
     return response;
   }
