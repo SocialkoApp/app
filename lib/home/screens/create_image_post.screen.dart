@@ -82,6 +82,7 @@ class _CreateImagePostState extends ConsumerState<CreateImagePost> {
       body: SizedBox(
         width: width,
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

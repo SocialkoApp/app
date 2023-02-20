@@ -15,8 +15,9 @@ dependencies:
   # UI
   google_fonts: ^3.0.1
   flutter_iconly: ^1.0.2
-  flutter_markdown: ^0.6.13+1
+  flutter_markdown: ^0.6.14
   flutter_expandable_fab: ^1.7.0
+  expandable: ^5.0.1
 
   # Image Manipulation
   image_picker: ^0.8.6+1
@@ -29,8 +30,9 @@ dependencies:
   # Storage
   flutter_secure_storage: ^7.0.1
   
-  # Network
+  # Utils
   http: ^0.13.5
+  url_launcher: ^6.1.9
 
   # State Management
   flutter_riverpod: ^2.1.3

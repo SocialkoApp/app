@@ -1,6 +1,7 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
+import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
 import 'package:app/home/widgets/home/create_post.widget.dart';
@@ -53,7 +54,9 @@ class HomeScreen extends ConsumerWidget {
           onPressedImage: () => Navigator.of(context).pushNamed(
             CreateImagePost.routeName,
           ),
-          onPressedText: () => {},
+          onPressedText: () => Navigator.of(context).pushNamed(
+            CreateTextPost.routeName,
+          ),
         ),
       ),
     );
