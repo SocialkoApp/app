@@ -125,9 +125,9 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
             height: 44,
             child: Material(
               color: AppAssets.colors.darkHighlight,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12.0),
-                topRight: Radius.circular(12.0),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(AppAssets.styles.borderRadius),
+                topRight: Radius.circular(AppAssets.styles.borderRadius),
               ),
               child: ListView(
                 scrollDirection: Axis.horizontal,

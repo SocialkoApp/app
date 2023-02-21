@@ -123,7 +123,9 @@ class _CreateImagePostState extends ConsumerState<CreateImagePost> {
                             color: AppAssets.colors.darkHighlight,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(12.0),
+                          borderRadius: BorderRadius.circular(
+                            AppAssets.styles.borderRadius,
+                          ),
                         ),
                         height: MediaQuery.of(context).size.width * 0.9,
                         width: MediaQuery.of(context).size.width * 0.9,
