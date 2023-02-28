@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:app/utils/api/exceptions/unauthorized.exception.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_cropper/image_cropper.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'dart:io';
@@ -69,7 +68,7 @@ class ApiClient {
   // Sends JSON data to the app from the API
   // Used for adding new items
   static Future<Map<String, dynamic>> post(
-      String endpoint, Map<String, dynamic> body) async {
+      String endpoint, Map<String, dynamic>? body) async {
     final url = Uri.parse(apiUrl + endpoint);
 
     final headers = {
@@ -85,7 +84,7 @@ class ApiClient {
     final response = await http.post(
       url,
       headers: headers,
-      body: jsonEncode(body),
+      body: body == null ? null : jsonEncode(body),
     );
 
     final Map<String, dynamic> responseBody = jsonDecode(response.body);

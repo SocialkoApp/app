@@ -12,4 +12,10 @@ class CultsApi {
 
     return response;
   }
+
+  Future<Map<String, dynamic>> joinRequest(String id) async {
+    final response = await ApiClient.post('/cult/request/$id', null);
+
+    return response;
+  }
 }

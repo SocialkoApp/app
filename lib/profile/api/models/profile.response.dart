@@ -1,4 +1,5 @@
 import 'package:app/profile/api/models/cult.response.dart';
+import 'package:app/profile/api/models/cult_join_request.response.dart';
 import 'package:app/profile/api/models/profile_picture.response.dart';
 import 'package:app/profile/api/models/user.response.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -15,6 +16,7 @@ class ProfileResponse {
     required this.user,
     required this.profilePicture,
     required this.cult,
+    required this.cultJoinRequest,
     required this.updatedAt,
   });
 
@@ -29,6 +31,7 @@ class ProfileResponse {
   final ProfilePicture? profilePicture;
 
   final ProfileCult? cult;
+  final CultJoinRequest? cultJoinRequest;
 
   final String? updatedAt;
 

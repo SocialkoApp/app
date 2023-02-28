@@ -1,4 +1,5 @@
 import 'package:app/cult/api/models/cult.response.dart';
+import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,9 +21,19 @@ class AsyncCults extends _$AsyncCults {
     return _fetchCults();
   }
 
-  FutureOr<CultResponse> fetchCult(String name) async {
+  Future<CultResponse> fetchCult(String name) async {
     final resp = await API.cults.getSingle(name);
 
     return CultResponse.fromJson(resp);
+  }
+
+  Future<void> requestCultJoin(String id) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.joinRequest(id);
+
+      return _fetchCults();
+    });
   }
 }

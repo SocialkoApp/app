@@ -2,6 +2,7 @@ import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
+import 'package:app/home/widgets/cult/cult.widget.dart';
 import 'package:app/home/widgets/cult/cults.widget.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
@@ -33,9 +34,19 @@ class HomeScreen extends ConsumerWidget {
           children: [
             const SizedBox(height: 40.0),
             Header(profile: profile),
-            TopText(isInCult: profile.cult != null),
+            TopText(
+              isInCult: profile.cult != null,
+              hasJoinRequest: profile.cultJoinRequest != null,
+            ),
             const SizedBox(height: 10.0),
-            profile.cult != null ? const PostsWidget() : const CultsWidget(),
+            profile.cult != null
+                ? const PostsWidget()
+                : profile.cultJoinRequest == null
+                    ? const CultsWidget()
+                    : CultWidget(
+                        cult: profile.cultJoinRequest!.cult,
+                        onJoin: null,
+                      ),
           ],
         ),
         floatingActionButtonLocation:
