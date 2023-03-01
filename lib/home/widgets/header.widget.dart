@@ -1,11 +1,13 @@
 import 'package:app/common/screens/initializing.screen.dart';
+import 'package:app/home/screens/create_image_post.screen.dart';
+import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
-import 'package:app/profile/screens/me.screen.dart';
 import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -17,14 +19,6 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void logout() {
-      API.auth.deleteToken();
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        InitializingScreen.routeName,
-        (Route<dynamic> route) => false,
-      );
-    }
-
     String subtitle() {
       if (profile.cult != null) {
         return '@${profile.user.username} • ${profile.cult?.cult?.name} [${profile.cult?.role}]';
@@ -42,6 +36,11 @@ class Header extends StatelessWidget {
           me: true,
         ),
       );
+    }
+
+    void redirect(String route) {
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed(route);
     }
 
     return Padding(
@@ -90,9 +89,36 @@ class Header extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => logout(),
+            onPressed: () => showDialog(
+              barrierDismissible: true,
+              barrierColor: Colors.transparent,
+              context: context,
+              builder: (context) => Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 60.0, 12.0, 0.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FloatingActionButton.extended(
+                      onPressed: () => redirect(CreateImagePost.routeName),
+                      backgroundColor: AppAssets.colors.primary,
+                      foregroundColor: AppAssets.colors.light,
+                      label: const Text('Image'),
+                      icon: const Icon(IconlyBold.image),
+                    ),
+                    const SizedBox(height: 10.0),
+                    FloatingActionButton.extended(
+                      onPressed: () => redirect(CreateTextPost.routeName),
+                      backgroundColor: AppAssets.colors.primary,
+                      foregroundColor: AppAssets.colors.light,
+                      label: const Text('Text'),
+                      icon: const Icon(IconlyBold.document),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             icon: Icon(
-              Icons.settings,
+              IconlyLight.plus,
               size: 35.0,
               color: AppAssets.colors.light,
             ),

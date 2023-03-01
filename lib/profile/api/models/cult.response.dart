@@ -1,4 +1,4 @@
-import 'package:app/profile/api/models/cult_data.response.dart';
+import 'package:app/cult/api/models/cult.response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cult.response.g.dart';
@@ -10,7 +10,7 @@ class ProfileCult {
     required this.role,
   });
 
-  final ProfileCultData? cult;
+  final CultResponse? cult;
   final String role;
 
   factory ProfileCult.fromJson(Map<String, dynamic> json) =>

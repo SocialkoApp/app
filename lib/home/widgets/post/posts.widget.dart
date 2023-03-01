@@ -64,6 +64,18 @@ class PostsWidget extends ConsumerWidget {
                     vote: votePost,
                   );
 
+                  if (i == posts.length - 1) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: GestureDetector(
+                        onTap: () => openPost(post.data.id),
+                        child: post.data.type == "Image"
+                            ? ImagePost(post: post)
+                            : TextPost(post: post),
+                      ),
+                    );
+                  }
+
                   return GestureDetector(
                     onTap: () => openPost(post.data.id),
                     child: post.data.type == "Image"

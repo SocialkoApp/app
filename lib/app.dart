@@ -1,4 +1,5 @@
 import 'package:app/auth/screens/email_confirmation.screen.dart';
+import 'package:app/common/screens/base.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/home/screens/home.screen.dart';
@@ -23,10 +24,10 @@ class App extends StatelessWidget {
         InitializingScreen.routeName: (context) => const InitializingScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
-        HomeScreen.routeName: (context) => const HomeScreen(),
-        PostScreen.routeName: (context) => const PostScreen(),
+        BaseScreen.routeName: (context) => const BaseScreen(),
         ProfileScreen.routeName: (context) => const ProfileScreen(),
         MeScreen.routeName: (context) => const MeScreen(),
+        PostScreen.routeName: (context) => const PostScreen(),
         CreateTextPost.routeName: (context) => const CreateTextPost(),
         CreateImagePost.routeName: (context) => const CreateImagePost(),
         EmailConfirmationScreen.routeName: (context) =>
