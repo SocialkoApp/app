@@ -29,7 +29,5 @@ CultModel mapCult(Map<String, dynamic> c) {
     role: t.role,
   );
 
-  print(cult);
-
   return cult;
 }
