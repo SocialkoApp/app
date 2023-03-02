@@ -1,7 +1,9 @@
 import 'package:app/common/screens/error.screen.dart';
+import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/profile/screens/me.screen.dart';
+import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,14 @@ class MyProfileScreen extends ConsumerWidget {
     final width = MediaQuery.of(context).size.width;
 
     final profile = ref.watch(asyncMeProvider);
+
+    void logout() {
+      API.auth.deleteToken();
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        InitializingScreen.routeName,
+        (Route<dynamic> route) => false,
+      );
+    }
 
     return profile.when(
       loading: () => const LoadingScreen(),
@@ -78,6 +88,20 @@ class MyProfileScreen extends ConsumerWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppAssets.colors.lightHighlight,
+                  ),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(
+                      AppAssets.colors.red,
+                    ),
+                  ),
+                  onPressed: () => logout(),
+                  child: Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: AppAssets.colors.light,
+                    ),
                   ),
                 ),
               ],

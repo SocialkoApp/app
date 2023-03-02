@@ -14,6 +14,7 @@ class AppColors {
   Color lightHighlight = const Color(0xffD1D1D1);
 
   Color primary = const Color(0xffB810C3);
+  Color red = const Color(0xffE54B4B);
 }
 
 class AppImages {

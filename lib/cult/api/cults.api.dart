@@ -7,6 +7,12 @@ class CultsApi {
     return response;
   }
 
+  Future<Map<String, dynamic>> getMine() async {
+    final response = await ApiClient.get('/cult');
+
+    return response;
+  }
+
   Future<Map<String, dynamic>> getSingle(String name) async {
     final response = await ApiClient.get('/c/$name');
 

@@ -1,5 +1,4 @@
 import 'package:app/cult/api/models/cult.response.dart';
-import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

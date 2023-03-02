@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/profile/api/models/update_profile.dto.dart';
 import 'package:app/utils/api/api.dart';

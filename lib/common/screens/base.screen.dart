@@ -1,3 +1,4 @@
+import 'package:app/cult/screens/cult.screen.dart';
 import 'package:app/home/screens/home.screen.dart';
 import 'package:app/profile/screens/my_profile.screen.dart';
 import 'package:app/utils/assets.util.dart';
@@ -23,6 +24,10 @@ class _BaseScreenState extends ConsumerState<BaseScreen> {
       label: 'Home',
     ),
     const BottomNavigationBarItem(
+      icon: Icon(IconlyBold.user3),
+      label: 'Cult',
+    ),
+    const BottomNavigationBarItem(
       icon: Icon(IconlyBold.profile),
       label: 'Profile',
     ),
@@ -38,6 +43,7 @@ class _BaseScreenState extends ConsumerState<BaseScreen> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const HomeScreen(),
+      const CultScreen(),
       const MyProfileScreen(),
     ];
 
@@ -47,9 +53,11 @@ class _BaseScreenState extends ConsumerState<BaseScreen> {
         items: _items,
         currentIndex: _selected,
         selectedItemColor: AppAssets.colors.primary,
+        unselectedItemColor: AppAssets.colors.lightHighlight,
         onTap: _onSelectItem,
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        backgroundColor: AppAssets.colors.darkHighlight,
       ),
     );
   }
