@@ -1,8 +1,8 @@
 import 'package:app/auth/screens/email_confirmation.screen.dart';
 import 'package:app/common/screens/base.screen.dart';
+import 'package:app/cult/screens/members.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
-import 'package:app/home/screens/home.screen.dart';
 import 'package:app/auth/screens/register.screen.dart';
 import 'package:app/home/screens/post.screen.dart';
 import 'package:app/profile/screens/me.screen.dart';
@@ -30,10 +30,12 @@ class App extends StatelessWidget {
         PostScreen.routeName: (context) => const PostScreen(),
         CreateTextPost.routeName: (context) => const CreateTextPost(),
         CreateImagePost.routeName: (context) => const CreateImagePost(),
+        MembersScreen.routeName: (context) => const MembersScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),
       },
       theme: ThemeData(
+        useMaterial3: true,
         textTheme: GoogleFonts.quicksandTextTheme(
           Theme.of(context).textTheme.apply(
                 bodyColor: AppAssets.colors.light,

@@ -24,4 +24,8 @@ class CultsApi {
 
     return response;
   }
+
+  Future<void> removeUser(String username) async {
+    await ApiClient.put('/cult/remove/$username');
+  }
 }

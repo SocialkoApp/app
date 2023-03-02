@@ -1,9 +1,7 @@
-import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
 import 'package:app/profile/screens/profile.screen.dart';
-import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';

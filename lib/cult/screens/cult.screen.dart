@@ -1,6 +1,7 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/cult/providers/cult.provider.dart';
+import 'package:app/cult/screens/members.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/cult_icon.util.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,8 @@ class CultScreen extends ConsumerWidget {
                           AppAssets.colors.darkHighlight,
                         ),
                       ),
-                      onPressed: () => {},
+                      onPressed: () => Navigator.of(context)
+                          .pushNamed(MembersScreen.routeName),
                       child: Row(
                         children: [
                           Icon(

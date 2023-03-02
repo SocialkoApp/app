@@ -17,4 +17,14 @@ class AsyncCult extends _$AsyncCult {
   FutureOr<CultModel> build() {
     return _fetchCult();
   }
+
+  Future<void> removeUser(String username) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.removeUser(username);
+
+      return _fetchCult();
+    });
+  }
 }
