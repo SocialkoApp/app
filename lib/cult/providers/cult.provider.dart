@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:app/cult/api/map_cult.dart';
 import 'package:app/cult/api/models/cult.model.dart';
+import 'package:app/cult/api/models/update_cult.dto.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -33,6 +36,26 @@ class AsyncCult extends _$AsyncCult {
 
     state = await AsyncValue.guard(() async {
       await API.cults.addUser(username);
+
+      return _fetchCult();
+    });
+  }
+
+  Future<void> updateCult(UpdateCultDto body) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.updateCult(body);
+
+      return _fetchCult();
+    });
+  }
+
+  Future<void> updateIcon(File file) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.updateIcon(file);
 
       return _fetchCult();
     });

@@ -1,6 +1,7 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/cult/providers/cult.provider.dart';
+import 'package:app/cult/screens/edit_cult.screen.dart';
 import 'package:app/cult/screens/members.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/cult_icon.util.dart';
@@ -63,61 +64,67 @@ class CultScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   if (cult.role == "Ruler")
-                    SizedBox(
-                      width: 135.0,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                            AppAssets.colors.darkHighlight,
-                          ),
-                        ),
-                        onPressed: () => {},
-                        child: Row(
-                          children: [
-                            Icon(
-                              IconlyBold.shieldDone,
-                              color: AppAssets.colors.light,
-                            ),
-                            const SizedBox(width: 5.0),
-                            Text(
-                              'Ruler Tools',
-                              style: TextStyle(
-                                color: AppAssets.colors.light,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  // const SizedBox(wid),
-                  SizedBox(
-                    width: 135.0,
-                    child: ElevatedButton(
+                    ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll<Color>(
                           AppAssets.colors.darkHighlight,
                         ),
                       ),
                       onPressed: () => Navigator.of(context)
-                          .pushNamed(MembersScreen.routeName),
-                      child: Row(
-                        children: [
-                          Icon(
-                            IconlyBold.user3,
-                            color: AppAssets.colors.light,
-                          ),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            'Followers',
-                            style: TextStyle(
-                              color: AppAssets.colors.light,
-                            ),
-                          ),
-                        ],
+                          .pushNamed(EditCultScreen.routeName),
+                      child: Icon(
+                        IconlyBold.edit,
+                        color: AppAssets.colors.light,
+                      ),
+                    ),
+                  if (cult.role == "Ruler")
+                    ElevatedButton.icon(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                          AppAssets.colors.darkHighlight,
+                        ),
+                      ),
+                      icon: Icon(
+                        IconlyBold.shieldDone,
+                        color: AppAssets.colors.light,
+                      ),
+                      onPressed: () => {},
+                      label: Text(
+                        'Ruler Tools',
+                        style: TextStyle(
+                          color: AppAssets.colors.light,
+                        ),
+                      ),
+                    ),
+                  // const SizedBox(wid),
+                  ElevatedButton.icon(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color>(
+                        AppAssets.colors.darkHighlight,
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed(MembersScreen.routeName),
+                    icon: Icon(
+                      IconlyBold.user3,
+                      color: AppAssets.colors.light,
+                    ),
+                    label: Text(
+                      'Followers',
+                      style: TextStyle(
+                        color: AppAssets.colors.light,
                       ),
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 20.0),
+              Text(
+                cult.description,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppAssets.colors.lightHighlight,
+                ),
               ),
             ],
           ),
