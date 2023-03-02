@@ -4,6 +4,7 @@ import 'package:app/common/widgets/back.widget.dart';
 import 'package:app/cult/providers/cult.provider.dart';
 import 'package:app/cult/widgets/member.widget.dart';
 import 'package:app/utils/assets.util.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,8 @@ class MembersScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    final addUserController = TextEditingController();
 
     final c = ref.watch(asyncCultProvider);
 
@@ -47,6 +50,50 @@ class MembersScreen extends ConsumerWidget {
                   color: AppAssets.colors.red,
                 ),
               ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    void addUser() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text(
+            'Add New User',
+            style: TextStyle(
+              color: AppAssets.colors.light,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: TextField(
+            controller: addUserController,
+            decoration: InputDecoration(
+              label: Text(
+                'Username',
+                style: TextStyle(color: AppAssets.colors.light),
+              ),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppAssets.colors.dark,
+                ),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => {
+                Navigator.of(context).pop(),
+                ref
+                    .read(asyncCultProvider.notifier)
+                    .addUser(addUserController.text)
+              },
+              child: const Text('Add'),
             ),
           ],
         ),
@@ -96,6 +143,13 @@ class MembersScreen extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => addUser(),
+          child: Icon(
+            IconlyBold.addUser,
+            color: AppAssets.colors.light,
           ),
         ),
       ),

@@ -31,7 +31,10 @@ class MeInput extends StatelessWidget {
           maxLength: maxLength,
           decoration: AppAssets.styles.inputDecoration.copyWith(
             labelText: helper,
-            labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppAssets.colors.light,
+            ),
           ),
         ),
       ),

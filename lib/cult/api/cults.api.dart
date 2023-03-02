@@ -28,4 +28,8 @@ class CultsApi {
   Future<void> removeUser(String username) async {
     await ApiClient.put('/cult/remove/$username');
   }
+
+  Future<void> addUser(String username) async {
+    await ApiClient.put('/cult/add/$username');
+  }
 }

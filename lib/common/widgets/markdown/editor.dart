@@ -120,7 +120,7 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
         color: AppAssets.colors.dark,
       ),
       child: Column(
-        children: <Widget>[
+        children: [
           SizedBox(
             height: 44,
             child: Material(
@@ -217,15 +217,47 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      MeInput(
+                                      TextField(
                                         controller: textController,
-                                        helper: 'Text',
+                                        decoration: InputDecoration(
+                                          label: Text(
+                                            'Text',
+                                            style: TextStyle(
+                                              color: AppAssets.colors.light,
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppAssets.colors.dark,
+                                            ),
+                                          ),
+                                        ),
                                       ),
+                                      // MeInput(
+                                      //   controller: textController,
+                                      //   helper: 'Text',
+                                      // ),
                                       const SizedBox(height: 10),
-                                      MeInput(
+                                      TextField(
                                         controller: linkController,
-                                        helper: 'Link',
+                                        decoration: InputDecoration(
+                                          label: Text(
+                                            'Link',
+                                            style: TextStyle(
+                                              color: AppAssets.colors.light,
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppAssets.colors.dark,
+                                            ),
+                                          ),
+                                        ),
                                       ),
+                                      // MeInput(
+                                      //   controller: linkController,
+                                      //   helper: 'Link',
+                                      // ),
                                     ],
                                   ),
                                   contentPadding: const EdgeInsets.all(

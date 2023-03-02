@@ -27,4 +27,14 @@ class AsyncCult extends _$AsyncCult {
       return _fetchCult();
     });
   }
+
+  Future<void> addUser(String username) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.addUser(username);
+
+      return _fetchCult();
+    });
+  }
 }
