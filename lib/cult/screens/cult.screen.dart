@@ -108,7 +108,7 @@ class CultScreen extends ConsumerWidget {
                           ),
                           const SizedBox(width: 5.0),
                           Text(
-                            'Members',
+                            'Followers',
                             style: TextStyle(
                               color: AppAssets.colors.light,
                             ),
