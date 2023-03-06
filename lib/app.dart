@@ -1,6 +1,7 @@
 import 'package:app/auth/screens/email_confirmation.screen.dart';
 import 'package:app/common/screens/base.screen.dart';
 import 'package:app/cult/screens/edit_cult.screen.dart';
+import 'package:app/cult/screens/join_requests.screen.dart';
 import 'package:app/cult/screens/members.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
@@ -32,6 +33,7 @@ class App extends StatelessWidget {
         CreateTextPost.routeName: (context) => const CreateTextPost(),
         CreateImagePost.routeName: (context) => const CreateImagePost(),
         MembersScreen.routeName: (context) => const MembersScreen(),
+        JoinRequestsScreen.routeName: (context) => const JoinRequestsScreen(),
         EditCultScreen.routeName: (context) => const EditCultScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),

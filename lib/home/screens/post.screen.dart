@@ -83,6 +83,9 @@ class PostScreen extends ConsumerWidget {
                 Column(
                   children: renderComments(p.comments),
                 ),
+                Row(
+                  children: [],
+                ),
               ],
             ),
           ),

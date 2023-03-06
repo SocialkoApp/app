@@ -16,6 +16,9 @@ CultResponse _$CultResponseFromJson(Map<String, dynamic> json) => CultResponse(
       members: (json['members'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
+      joinRequests: (json['joinRequests'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
       count: CountResponse.fromJson(json['_count'] as Map<String, dynamic>),
       role: json['role'] as String?,
     );
@@ -27,6 +30,7 @@ Map<String, dynamic> _$CultResponseToJson(CultResponse instance) =>
       'description': instance.description,
       'icon': instance.icon,
       'members': instance.members,
+      'joinRequests': instance.joinRequests,
       '_count': instance.count,
       'role': instance.role,
     };

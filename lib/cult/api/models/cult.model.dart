@@ -1,6 +1,7 @@
 import 'package:app/cult/api/models/count.response.dart';
 import 'package:app/cult/api/models/member_model.dart';
 import 'package:app/home/api/models/image.response.dart';
+import 'package:app/profile/api/models/profile.response.dart';
 
 class CultModel {
   CultModel({
@@ -9,6 +10,7 @@ class CultModel {
     required this.description,
     required this.icon,
     required this.members,
+    required this.joinRequests,
     required this.count,
     required this.role,
   });
@@ -21,6 +23,7 @@ class CultModel {
   final ImageResponse? icon;
 
   final List<MemberModel>? members;
+  final List<ProfileResponse>? joinRequests;
 
   final CountResponse count;
 

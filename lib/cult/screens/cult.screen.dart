@@ -2,6 +2,7 @@ import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/cult/providers/cult.provider.dart';
 import 'package:app/cult/screens/edit_cult.screen.dart';
+import 'package:app/cult/screens/join_requests.screen.dart';
 import 'package:app/cult/screens/members.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/cult_icon.util.dart';
@@ -85,12 +86,13 @@ class CultScreen extends ConsumerWidget {
                         ),
                       ),
                       icon: Icon(
-                        IconlyBold.shieldDone,
+                        IconlyBold.addUser,
                         color: AppAssets.colors.light,
                       ),
-                      onPressed: () => {},
+                      onPressed: () => Navigator.of(context)
+                          .pushNamed(JoinRequestsScreen.routeName),
                       label: Text(
-                        'Ruler Tools',
+                        'Join Requests',
                         style: TextStyle(
                           color: AppAssets.colors.light,
                         ),

@@ -11,7 +11,7 @@ part 'cult.provider.g.dart';
 @riverpod
 class AsyncCult extends _$AsyncCult {
   Future<CultModel> _fetchCult() async {
-    final cult = await API.cults.getMine();
+    final cult = await API.cults.get.mine();
 
     return mapCult(cult);
   }
@@ -25,7 +25,7 @@ class AsyncCult extends _$AsyncCult {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.removeUser(username);
+      await API.cults.members.remove(username);
 
       return _fetchCult();
     });
@@ -35,7 +35,27 @@ class AsyncCult extends _$AsyncCult {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.addUser(username);
+      await API.cults.members.add(username);
+
+      return _fetchCult();
+    });
+  }
+
+  Future<void> acceptRequest(String id) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.requests.accept(id);
+
+      return _fetchCult();
+    });
+  }
+
+  Future<void> declineRequest(String id) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.requests.decline(id);
 
       return _fetchCult();
     });
@@ -45,7 +65,7 @@ class AsyncCult extends _$AsyncCult {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.updateCult(body);
+      await API.cults.update.info(body);
 
       return _fetchCult();
     });
@@ -55,7 +75,7 @@ class AsyncCult extends _$AsyncCult {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.updateIcon(file);
+      await API.cults.update.icon(file);
 
       return _fetchCult();
     });

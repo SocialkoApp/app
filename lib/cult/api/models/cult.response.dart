@@ -12,6 +12,7 @@ class CultResponse {
     required this.description,
     required this.icon,
     required this.members,
+    required this.joinRequests,
     required this.count,
     required this.role,
   });
@@ -24,6 +25,7 @@ class CultResponse {
   final ImageResponse? icon;
 
   final List<Map<String, dynamic>>? members;
+  final List<Map<String, dynamic>>? joinRequests;
 
   @JsonKey(name: '_count')
   final CountResponse count;

@@ -7,7 +7,7 @@ part 'cults.provider.g.dart';
 @riverpod
 class AsyncCults extends _$AsyncCults {
   Future<List<CultResponse>> _fetchCults() async {
-    final c = await API.cults.get();
+    final c = await API.cults.get.all();
 
     final List<CultResponse> cults =
         c.map((e) => CultResponse.fromJson(e)).toList();
@@ -21,7 +21,7 @@ class AsyncCults extends _$AsyncCults {
   }
 
   Future<CultResponse> fetchCult(String name) async {
-    final resp = await API.cults.getSingle(name);
+    final resp = await API.cults.get.single(name);
 
     return CultResponse.fromJson(resp);
   }
@@ -30,7 +30,7 @@ class AsyncCults extends _$AsyncCults {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.joinRequest(id);
+      await API.cults.requests.create(id);
 
       return _fetchCults();
     });

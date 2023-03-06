@@ -22,6 +22,7 @@ class SocialkoButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          backgroundColor: AppAssets.colors.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppAssets.styles.borderRadius),
           ),
