@@ -6,9 +6,11 @@ part 'user.response.g.dart';
 class ProfileUser {
   ProfileUser({
     required this.username,
+    required this.email,
   });
 
   final String username;
+  final String? email;
 
   factory ProfileUser.fromJson(Map<String, dynamic> json) =>
       _$ProfileUserFromJson(json);

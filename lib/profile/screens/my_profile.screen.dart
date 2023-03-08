@@ -3,10 +3,12 @@ import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/profile/screens/me.screen.dart';
+import 'package:app/profile/screens/settings.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyProfileScreen extends ConsumerWidget {
@@ -66,21 +68,51 @@ class MyProfileScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(
-                      AppAssets.colors.darkHighlight,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                          AppAssets.colors.darkHighlight,
+                        ),
+                      ),
+                      icon: Icon(
+                        IconlyBold.edit,
+                        color: AppAssets.colors.light,
+                      ),
+                      onPressed: () => Navigator.of(context).pushNamed(
+                        MeScreen.routeName,
+                      ),
+                      label: Text(
+                        'Edit Profile',
+                        style: TextStyle(
+                          color: AppAssets.colors.light,
+                        ),
+                      ),
                     ),
-                  ),
-                  onPressed: () => Navigator.of(context).pushNamed(
-                    MeScreen.routeName,
-                  ),
-                  child: Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                      color: AppAssets.colors.light,
+                    const SizedBox(width: 10.0),
+                    ElevatedButton.icon(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                          AppAssets.colors.darkHighlight,
+                        ),
+                      ),
+                      icon: Icon(
+                        Icons.settings,
+                        color: AppAssets.colors.light,
+                      ),
+                      onPressed: () => Navigator.of(context).pushNamed(
+                        SettingsScreen.routeName,
+                      ),
+                      label: Text(
+                        'Settings',
+                        style: TextStyle(
+                          color: AppAssets.colors.light,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 const SizedBox(height: 10.0),
                 Text(
@@ -90,20 +122,26 @@ class MyProfileScreen extends ConsumerWidget {
                     color: AppAssets.colors.lightHighlight,
                   ),
                 ),
-                ElevatedButton(
+                const Spacer(),
+                ElevatedButton.icon(
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(
                       AppAssets.colors.red,
                     ),
                   ),
+                  icon: Icon(
+                    IconlyBold.logout,
+                    color: AppAssets.colors.light,
+                  ),
                   onPressed: () => logout(),
-                  child: Text(
+                  label: Text(
                     'Logout',
                     style: TextStyle(
                       color: AppAssets.colors.light,
                     ),
                   ),
                 ),
+                const SizedBox(height: 20.0),
               ],
             ),
           ),

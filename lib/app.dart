@@ -9,6 +9,7 @@ import 'package:app/auth/screens/register.screen.dart';
 import 'package:app/home/screens/post.screen.dart';
 import 'package:app/profile/screens/me.screen.dart';
 import 'package:app/profile/screens/profile.screen.dart';
+import 'package:app/profile/screens/settings.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 import 'package:app/common/screens/initializing.screen.dart';
@@ -34,6 +35,7 @@ class App extends StatelessWidget {
         CreateImagePost.routeName: (context) => const CreateImagePost(),
         MembersScreen.routeName: (context) => const MembersScreen(),
         JoinRequestsScreen.routeName: (context) => const JoinRequestsScreen(),
+        SettingsScreen.routeName: (context) => const SettingsScreen(),
         EditCultScreen.routeName: (context) => const EditCultScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),
