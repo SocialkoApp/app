@@ -60,13 +60,13 @@ class PostActions extends StatelessWidget {
             ),
           ],
         ),
-        IconButton(
-          onPressed: () => print('share'),
-          icon: Icon(
-            IconlyBold.send,
-            color: AppAssets.colors.light,
-          ),
-        ),
+        // IconButton(
+        //   onPressed: () => print('share'),
+        //   icon: Icon(
+        //     IconlyBold.send,
+        //     color: AppAssets.colors.light,
+        //   ),
+        // ),
       ],
     );
   }
