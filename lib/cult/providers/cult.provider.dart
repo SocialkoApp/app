@@ -21,6 +21,8 @@ class AsyncCult extends _$AsyncCult {
     return _fetchCult();
   }
 
+  Future<void> create() async {}
+
   Future<void> removeUser(String username) async {
     state = const AsyncValue.loading();
 

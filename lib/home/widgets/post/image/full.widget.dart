@@ -12,6 +12,7 @@ class FullImagePost extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(
@@ -20,25 +21,28 @@ class FullImagePost extends StatelessWidget {
             child: Image.network('${p.image?.url}'),
           ),
           const SizedBox(height: 20.0),
-          RichText(
-            textAlign: TextAlign.justify,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: '@${p.author.user.username}',
-                  style: TextStyle(
-                    color: AppAssets.colors.light,
-                    fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: RichText(
+              textAlign: TextAlign.justify,
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: '@${p.author.user.username}',
+                    style: TextStyle(
+                      color: AppAssets.colors.light,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                TextSpan(
-                  text: ' - ${p.description}',
-                  style: TextStyle(
-                    color: AppAssets.colors.light,
-                    // fontWeight: FontWeight.bold,
+                  TextSpan(
+                    text: ' - ${p.description}',
+                    style: TextStyle(
+                      color: AppAssets.colors.light,
+                      // fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

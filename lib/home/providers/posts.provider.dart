@@ -5,6 +5,7 @@ import 'package:app/home/api/models/create_post.dto.dart';
 import 'package:app/home/api/models/image.response.dart';
 import 'package:app/home/api/models/post.model.dart';
 import 'package:app/home/api/models/vote.model.dart';
+import 'package:app/home/providers/post.provider.dart';
 import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/utils/api/api.client.dart';
 import 'package:app/utils/api/api.dart';
@@ -70,6 +71,8 @@ class AsyncPosts extends _$AsyncPosts {
 
       return _fetchPosts();
     });
+
+    ref.invalidate(asyncPostProvider);
   }
 
   bool isUpvoted(List<VoteModel> votes) {
@@ -77,17 +80,13 @@ class AsyncPosts extends _$AsyncPosts {
 
     bool upvoted = false;
 
-    profile.when(
-      loading: () => {},
-      error: (e, s) => {},
-      data: (p) {
-        final v = votes.where(
-          (e) => e.profile.id == p.id && e.type == "Upvote",
-        );
+    profile.whenData((p) {
+      final v = votes.where(
+        (e) => e.profile.id == p.id && e.type == "Upvote",
+      );
 
-        v.isNotEmpty ? upvoted = true : upvoted = false;
-      },
-    );
+      v.isNotEmpty ? upvoted = true : upvoted = false;
+    });
 
     return upvoted;
   }
@@ -97,25 +96,14 @@ class AsyncPosts extends _$AsyncPosts {
 
     bool downvoted = false;
 
-    profile.when(
-      loading: () => {},
-      error: (e, s) => {},
-      data: (p) {
-        final v = votes.where(
-          (e) => e.profile.id == p.id && e.type == "Downvote",
-        );
+    profile.whenData((p) {
+      final v = votes.where(
+        (e) => e.profile.id == p.id && e.type == "Downvote",
+      );
 
-        v.isNotEmpty ? downvoted = true : downvoted = false;
-      },
-    );
+      v.isNotEmpty ? downvoted = true : downvoted = false;
+    });
 
     return downvoted;
   }
 }
-
-final postsFamily =
-    FutureProvider.family<PostModel, String>((ref, postId) async {
-  final posts = ref.read(asyncPostsProvider.notifier);
-  // final posts = ref.watch(asyncPostsProvider);
-  return await posts.fetchPost(postId);
-});

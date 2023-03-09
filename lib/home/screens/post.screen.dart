@@ -2,8 +2,10 @@ import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/common/widgets/back.widget.dart';
 import 'package:app/home/api/models/comment.model.dart';
-import 'package:app/home/providers/posts.provider.dart';
+import 'package:app/home/providers/post.provider.dart';
+import 'package:app/home/utils/post.data.dart';
 import 'package:app/home/widgets/post/comment.widget.dart';
+import 'package:app/home/widgets/post/full_actions.widget.dart';
 import 'package:app/home/widgets/post/image/full.widget.dart';
 import 'package:app/home/widgets/post/post_author.widget.dart';
 import 'package:app/home/widgets/post/text/full.widget.dart';
@@ -21,7 +23,7 @@ class PostScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final args = ModalRoute.of(context)!.settings.arguments as Args;
 
-    final post = ref.watch(postsFamily(args.id));
+    final post = ref.watch(asyncPostProvider.call(args.id));
 
     List<Widget> renderComments(List<CommentModel> c) {
       List<Widget> items = [];
@@ -40,6 +42,12 @@ class PostScreen extends ConsumerWidget {
         ProfileScreen.routeName,
         arguments: ProfileArgs(username),
       );
+    }
+
+    void votePost(String id, String type) {
+      ref
+          .read(asyncPostProvider.call(args.id).notifier)
+          .votePost(args.id, type);
     }
 
     return post.when(
@@ -73,6 +81,18 @@ class PostScreen extends ConsumerWidget {
                 const SizedBox(height: 20.0),
                 p.type == "Image" ? FullImagePost(p: p) : FullTextPost(p: p),
                 const SizedBox(height: 10.0),
+                FullPostActions(
+                  post: PostData(
+                    data: p,
+                    upvoted: ref
+                        .watch(asyncPostProvider.call(args.id).notifier)
+                        .isUpvoted(p.votes),
+                    downvoted: ref
+                        .watch(asyncPostProvider.call(args.id).notifier)
+                        .isDownvoted(p.votes),
+                    vote: votePost,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Divider(
