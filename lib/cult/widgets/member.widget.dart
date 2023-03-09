@@ -2,6 +2,7 @@ import 'package:app/cult/api/models/member_model.dart';
 import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
+import 'package:app/utils/snackbar.util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -76,18 +77,7 @@ class MemberWidget extends StatelessWidget {
           ),
           if (member.role == "Ruler")
             IconButton(
-              onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: AppAssets.colors.darkHighlight,
-                  content: Center(
-                    heightFactor: 1,
-                    child: Text(
-                      'This user is the ruler',
-                      style: TextStyle(color: AppAssets.colors.light),
-                    ),
-                  ),
-                ),
-              ),
+              onPressed: () => showSnackbar('This user is the ruler'),
               icon: Icon(
                 IconlyBold.star,
                 color: AppAssets.colors.lightHighlight,

@@ -1,19 +1,20 @@
+import 'package:app/common/globals.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 
-void showSnackbar(BuildContext context, String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: AppAssets.colors.darkHighlight,
-      content: Center(
-        heightFactor: 1,
-        child: Text(
-          message,
-          style: TextStyle(
-            color: AppAssets.colors.light,
-          ),
+void showSnackbar(String message) {
+  final SnackBar snackBar = SnackBar(
+    backgroundColor: AppAssets.colors.darkHighlight,
+    content: Center(
+      heightFactor: 1,
+      child: Text(
+        message,
+        style: TextStyle(
+          color: AppAssets.colors.light,
         ),
       ),
     ),
   );
+
+  snackbarKey.currentState?.showSnackBar(snackBar);
 }

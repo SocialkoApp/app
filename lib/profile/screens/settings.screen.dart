@@ -20,18 +20,14 @@ class SettingsScreen extends ConsumerWidget {
 
     final me = ref.watch(asyncMeProvider);
 
-    void notify(String message) {
-      showSnackbar(context, message);
-    }
-
     void resetPassword(String email) async {
       if (email == 'invalid') {
-        return notify('There was an error');
+        return showSnackbar('There was an error');
       }
 
       await API.auth.login.resetPasword(email);
 
-      notify('Check your email inbox');
+      showSnackbar('Check your email inbox');
     }
 
     return me.when(

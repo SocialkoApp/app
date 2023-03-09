@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:app/cult/api/map_cult.dart';
 import 'package:app/cult/api/models/cult.model.dart';
 import 'package:app/cult/api/models/update_cult.dto.dart';
+import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,8 +21,6 @@ class AsyncCult extends _$AsyncCult {
   FutureOr<CultModel> build() {
     return _fetchCult();
   }
-
-  Future<void> create() async {}
 
   Future<void> removeUser(String username) async {
     state = const AsyncValue.loading();
@@ -67,7 +66,7 @@ class AsyncCult extends _$AsyncCult {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.update.info(body);
+      await API.cults.manage.info(body);
 
       return _fetchCult();
     });
@@ -77,7 +76,7 @@ class AsyncCult extends _$AsyncCult {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.update.icon(file);
+      await API.cults.manage.icon(file);
 
       return _fetchCult();
     });

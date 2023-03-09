@@ -1,5 +1,7 @@
 import 'package:app/auth/screens/email_confirmation.screen.dart';
+import 'package:app/common/globals.dart';
 import 'package:app/common/screens/base.screen.dart';
+import 'package:app/cult/screens/create.screen.dart';
 import 'package:app/cult/screens/edit_cult.screen.dart';
 import 'package:app/cult/screens/join_requests.screen.dart';
 import 'package:app/cult/screens/members.screen.dart';
@@ -23,6 +25,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: InitializingScreen.routeName,
+      scaffoldMessengerKey: snackbarKey,
       routes: {
         InitializingScreen.routeName: (context) => const InitializingScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
@@ -37,6 +40,7 @@ class App extends StatelessWidget {
         JoinRequestsScreen.routeName: (context) => const JoinRequestsScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
         EditCultScreen.routeName: (context) => const EditCultScreen(),
+        CreateCultScreen.routeName: (context) => const CreateCultScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),
       },

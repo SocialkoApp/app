@@ -1,5 +1,6 @@
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MeInput extends StatelessWidget {
   const MeInput({
@@ -8,12 +9,14 @@ class MeInput extends StatelessWidget {
     required this.helper,
     this.maxLines,
     this.maxLength,
+    this.inputFormatters,
   });
 
   final TextEditingController controller;
   final String helper;
   final int? maxLines;
   final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,7 @@ class MeInput extends StatelessWidget {
           vertical: 4.0,
         ),
         child: TextField(
+          inputFormatters: inputFormatters,
           controller: controller,
           cursorColor: AppAssets.colors.lightHighlight,
           maxLines: maxLines,

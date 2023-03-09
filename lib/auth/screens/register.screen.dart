@@ -7,6 +7,7 @@ import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/auth/widgets/input.widget.dart';
 import 'package:app/common/button.widget.dart';
+import 'package:app/utils/snackbar.util.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -43,38 +44,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _handleRegister(RegisterDto registerDto) async {
     if (_password.text != _confirmPassword.text) {
-      _showErrorSnackbar('Passwords do not match');
+      showSnackbar('Passwords do not match');
       return;
     }
     try {
       await API.auth.register.register(registerDto);
       _handleRedirectEmailConfirm();
     } on BadRequestException {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enter all fields'),
-        ),
-      );
+      showSnackbar('Please enter all fields');
     } on ConflictException catch (e) {
-      _showErrorSnackbar(e.message);
+      showSnackbar(e.message);
     }
-  }
-
-  void _showErrorSnackbar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: AppAssets.colors.darkHighlight,
-        content: Center(
-          heightFactor: 1,
-          child: Text(
-            message,
-            style: TextStyle(
-              color: AppAssets.colors.light,
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   void _handleRedirectLogin() {

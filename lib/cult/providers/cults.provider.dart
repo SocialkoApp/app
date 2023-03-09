@@ -20,12 +20,6 @@ class AsyncCults extends _$AsyncCults {
     return _fetchCults();
   }
 
-  Future<CultResponse> fetchCult(String name) async {
-    final resp = await API.cults.get.single(name);
-
-    return CultResponse.fromJson(resp);
-  }
-
   Future<void> requestCultJoin(String id) async {
     state = const AsyncValue.loading();
 

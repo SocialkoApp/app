@@ -9,6 +9,7 @@ import 'package:app/common/screens/initializing.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/auth/widgets/input.widget.dart';
 import 'package:app/common/button.widget.dart';
+import 'package:app/utils/snackbar.util.dart';
 import 'package:flutter/material.dart';
 
 import 'register.screen.dart';
@@ -38,21 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       passwordObscured = !passwordObscured;
     });
-  }
-
-  void _showErrorSnackbar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: AppAssets.colors.darkHighlight,
-        content: Center(
-          heightFactor: 1,
-          child: Text(
-            message,
-            style: TextStyle(color: AppAssets.colors.light),
-          ),
-        ),
-      ),
-    );
   }
 
   void _showResentDialog() {
@@ -91,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       _redirectLoading();
     } on BadRequestException {
-      _showErrorSnackbar('Please enter your username and password');
+      showSnackbar('Please enter your username and password');
     } on ForbiddenException {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -119,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } catch (e) {
-      _showErrorSnackbar('An error occurred ${e.toString()}');
+      showSnackbar('An error occurred ${e.toString()}');
     }
   }
 

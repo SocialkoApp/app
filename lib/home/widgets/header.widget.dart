@@ -1,3 +1,4 @@
+import 'package:app/cult/screens/create.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
@@ -87,34 +88,40 @@ class Header extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => showDialog(
-              barrierDismissible: true,
-              barrierColor: Colors.transparent,
-              context: context,
-              builder: (context) => Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 60.0, 12.0, 0.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    FloatingActionButton.extended(
-                      onPressed: () => redirect(CreateImagePost.routeName),
-                      backgroundColor: AppAssets.colors.primary,
-                      foregroundColor: AppAssets.colors.light,
-                      label: const Text('Image'),
-                      icon: const Icon(IconlyBold.image),
+            onPressed: profile.cult == null
+                ? () =>
+                    Navigator.of(context).pushNamed(CreateCultScreen.routeName)
+                : () => showDialog(
+                      barrierDismissible: true,
+                      barrierColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(0.0, 60.0, 12.0, 0.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            FloatingActionButton.extended(
+                              onPressed: () =>
+                                  redirect(CreateImagePost.routeName),
+                              backgroundColor: AppAssets.colors.primary,
+                              foregroundColor: AppAssets.colors.light,
+                              label: const Text('Image'),
+                              icon: const Icon(IconlyBold.image),
+                            ),
+                            const SizedBox(height: 10.0),
+                            FloatingActionButton.extended(
+                              onPressed: () =>
+                                  redirect(CreateTextPost.routeName),
+                              backgroundColor: AppAssets.colors.primary,
+                              foregroundColor: AppAssets.colors.light,
+                              label: const Text('Text'),
+                              icon: const Icon(IconlyBold.document),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 10.0),
-                    FloatingActionButton.extended(
-                      onPressed: () => redirect(CreateTextPost.routeName),
-                      backgroundColor: AppAssets.colors.primary,
-                      foregroundColor: AppAssets.colors.light,
-                      label: const Text('Text'),
-                      icon: const Icon(IconlyBold.document),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             icon: Icon(
               IconlyLight.plus,
               size: 35.0,

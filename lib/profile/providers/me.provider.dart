@@ -38,4 +38,14 @@ class AsyncMe extends _$AsyncMe {
       return _fetchMe();
     });
   }
+
+  Future<void> createCult(String name, String description, File file) async {
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      await API.cults.manage.create(name, description, file);
+
+      return _fetchMe();
+    });
+  }
 }

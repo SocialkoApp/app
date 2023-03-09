@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:app/utils/api/exceptions/unauthorized.exception.dart';
+import 'package:app/utils/snackbar.util.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -90,11 +91,12 @@ class ApiClient {
     final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
     if (response.statusCode > 299) {
+      showSnackbar(responseBody['message']);
       switch (response.statusCode) {
         case 400:
-          throw BadRequestException(responseBody['error']['message']);
+          throw BadRequestException(responseBody['message']);
         case 403:
-          throw ForbiddenException(responseBody['error']['message']);
+          throw ForbiddenException(responseBody['message']);
       }
     }
 
@@ -129,9 +131,9 @@ class ApiClient {
     if (response.statusCode > 299) {
       switch (response.statusCode) {
         case 400:
-          throw BadRequestException(responseBody['error']['message']);
+          throw BadRequestException(responseBody['message']);
         case 403:
-          throw ForbiddenException(responseBody['error']['message']);
+          throw ForbiddenException(responseBody['message']);
       }
     }
 
@@ -163,9 +165,9 @@ class ApiClient {
     if (response.statusCode > 299) {
       switch (response.statusCode) {
         case 400:
-          throw BadRequestException(responseBody['error']['message']);
+          throw BadRequestException(responseBody['message']);
         case 403:
-          throw ForbiddenException(responseBody['error']['message']);
+          throw ForbiddenException(responseBody['message']);
       }
     }
 
