@@ -30,11 +30,15 @@ class CultScreen extends ConsumerWidget {
               const SizedBox(height: 70.0),
               Row(
                 children: [
-                  Image.network(
-                    assignCultIcon(cult.icon),
-                    height: 80.0,
-                    width: 80.0,
-                    fit: BoxFit.cover,
+                  ClipRRect(
+                    borderRadius:
+                        BorderRadius.circular(AppAssets.styles.borderRadius),
+                    child: Image.network(
+                      assignCultIcon(cult.icon),
+                      height: 80.0,
+                      width: 80.0,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   const SizedBox(width: 10.0),
                   Column(
