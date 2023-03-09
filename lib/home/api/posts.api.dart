@@ -1,3 +1,4 @@
+import 'package:app/home/api/models/add_comment.dto.dart';
 import 'package:app/home/api/models/create_post.dto.dart';
 import 'package:app/utils/api/api.client.dart';
 
@@ -24,5 +25,9 @@ class PostsApi {
     final response = await ApiClient.post('/posts', body.toJson());
 
     return response;
+  }
+
+  Future<void> comment(AddCommentDto body) async {
+    await ApiClient.put('/posts/comment', body.toJson());
   }
 }

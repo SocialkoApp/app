@@ -27,7 +27,7 @@ class CommentWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${c.author.firstName} ${c.author.lastName} • ${c.author.user.username}',
+                '${c.author.firstName} ${c.author.lastName}',
                 style: TextStyle(
                   color: AppAssets.colors.light,
                   fontWeight: FontWeight.bold,

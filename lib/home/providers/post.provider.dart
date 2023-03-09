@@ -1,4 +1,5 @@
 import 'package:app/home/api/map_profile.util.dart';
+import 'package:app/home/api/models/add_comment.dto.dart';
 import 'package:app/home/api/models/post.model.dart';
 import 'package:app/home/api/models/vote.model.dart';
 import 'package:app/home/providers/posts.provider.dart';
@@ -19,6 +20,14 @@ class AsyncPost extends _$AsyncPost {
   @override
   FutureOr<PostModel> build(String id) {
     return _fetchPost(id);
+  }
+
+  Future<void> addComment(AddCommentDto body) async {
+    state = await AsyncValue.guard(() async {
+      await API.home.posts.comment(body);
+
+      return _fetchPost(body.postId);
+    });
   }
 
   Future<void> votePost(String id, String type) async {
