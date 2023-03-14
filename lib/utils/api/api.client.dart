@@ -13,7 +13,7 @@ import './api.dart';
 
 // Class that holds all the network requests
 class ApiClient {
-  static const String apiUrl = 'http://localhost:4000';
+  static const String apiUrl = 'https://api.socialko.cc';
 
   // GET function
   // Retrieves JSON data from the API to the app
@@ -95,6 +95,8 @@ class ApiClient {
       switch (response.statusCode) {
         case 400:
           throw BadRequestException(responseBody['message']);
+        case 401:
+          throw UnauthorizedException(responseBody['message']);
         case 403:
           throw ForbiddenException(responseBody['message']);
       }
@@ -129,9 +131,12 @@ class ApiClient {
     final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
     if (response.statusCode > 299) {
+      showSnackbar(responseBody['message']);
       switch (response.statusCode) {
         case 400:
           throw BadRequestException(responseBody['message']);
+        case 401:
+          throw UnauthorizedException(responseBody['message']);
         case 403:
           throw ForbiddenException(responseBody['message']);
       }
@@ -163,9 +168,12 @@ class ApiClient {
     final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
     if (response.statusCode > 299) {
+      showSnackbar(responseBody['message']);
       switch (response.statusCode) {
         case 400:
           throw BadRequestException(responseBody['message']);
+        case 401:
+          throw UnauthorizedException(responseBody['message']);
         case 403:
           throw ForbiddenException(responseBody['message']);
       }

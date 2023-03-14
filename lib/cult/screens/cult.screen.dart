@@ -19,7 +19,7 @@ class CultScreen extends ConsumerWidget {
 
     return c.when(
       loading: () => const LoadingScreen(),
-      error: (err, stack) => ErrorScreen(error: err),
+      error: (err, stack) => const ErrorScreen(error: 'You\'re not in a cult'),
       data: (cult) => Scaffold(
         backgroundColor: AppAssets.colors.dark,
         body: Padding(

@@ -9,11 +9,12 @@ class ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppAssets.colors.dark,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Text(
-            'Error: $error',
+            '$error',
             style: TextStyle(
               color: AppAssets.colors.light,
               fontSize: 22.0,

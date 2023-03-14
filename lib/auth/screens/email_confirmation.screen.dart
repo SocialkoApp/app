@@ -34,7 +34,7 @@ class EmailConfirmationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               const Text(
-                'To continue please click the link in the email we just sent you.',
+                'To continue please click the link in the email we just sent you.\n\nPlease check the spam/junk folder.',
                 style: TextStyle(
                   fontSize: 15.0,
                 ),

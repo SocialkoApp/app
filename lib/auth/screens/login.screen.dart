@@ -6,6 +6,7 @@ import 'package:app/auth/api/models/send_confirmation_email.dto.dart';
 import 'package:app/utils/api/exceptions/bad_request.exception.dart';
 import 'package:app/utils/api/exceptions/forbidden.exception.dart';
 import 'package:app/common/screens/initializing.screen.dart';
+import 'package:app/utils/api/exceptions/unauthorized.exception.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/auth/widgets/input.widget.dart';
 import 'package:app/common/button.widget.dart';
@@ -68,17 +69,20 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       setState(() => loading = true);
 
-      LoginResponse response = LoginResponse.fromJson(
-        await API.auth.login.login(loginDto),
-      );
+      final req = await API.auth.login.login(loginDto);
+
+      setState(() => loading = false);
+
+      LoginResponse response = LoginResponse.fromJson(req);
 
       await API.auth.saveToken(response.accessToken);
-      setState(() => loading = false);
 
       _redirectLoading();
     } on BadRequestException {
+      setState(() => loading = false);
       showSnackbar('Please enter your username and password');
     } on ForbiddenException {
+      setState(() => loading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: AppAssets.colors.darkHighlight,
@@ -104,8 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       );
+    } on UnauthorizedException {
+      setState(() => loading = false);
+      showSnackbar('This user doesn\'t exist');
     } catch (e) {
-      showSnackbar('An error occurred ${e.toString()}');
+      setState(() => loading = false);
+      showSnackbar('An error occured.');
     }
   }
 

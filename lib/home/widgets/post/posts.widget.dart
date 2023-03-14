@@ -5,6 +5,7 @@ import 'package:app/home/screens/post.screen.dart';
 import 'package:app/home/utils/post.data.dart';
 import 'package:app/home/widgets/post/image/home.widget.dart';
 import 'package:app/home/widgets/post/text/home.widget.dart';
+import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,8 +34,16 @@ class PostsWidget extends ConsumerWidget {
       return const SizedBox(height: 15.0);
     }
 
+    Future<void> refresh() async {
+      return ref.invalidate(asyncPostsProvider);
+    }
+
     return p.when(
-      loading: () => const LoadingScreen(),
+      loading: () => Center(
+        child: CircularProgressIndicator(
+          color: AppAssets.colors.primary,
+        ),
+      ),
       error: (err, stack) => ErrorScreen(error: err),
       data: (posts) => Flexible(
         flex: 1,
@@ -46,45 +55,48 @@ class PostsWidget extends ConsumerWidget {
             child: MediaQuery.removePadding(
               context: context,
               removeTop: true,
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, i) {
-                  final data = posts[i];
-                  final upvoted = ref
-                      .watch(asyncPostsProvider.notifier)
-                      .isUpvoted(data.votes);
-                  final downvoted = ref
-                      .watch(asyncPostsProvider.notifier)
-                      .isDownvoted(data.votes);
+              child: RefreshIndicator(
+                onRefresh: () => refresh(),
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, i) {
+                    final data = posts[i];
+                    final upvoted = ref
+                        .watch(asyncPostsProvider.notifier)
+                        .isUpvoted(data.votes);
+                    final downvoted = ref
+                        .watch(asyncPostsProvider.notifier)
+                        .isDownvoted(data.votes);
 
-                  final post = PostData(
-                    data: data,
-                    upvoted: upvoted,
-                    downvoted: downvoted,
-                    vote: votePost,
-                  );
-
-                  if (i == posts.length - 1) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: GestureDetector(
-                        onTap: () => openPost(post.data.id),
-                        child: post.data.type == "Image"
-                            ? ImagePost(post: post)
-                            : TextPost(post: post),
-                      ),
+                    final post = PostData(
+                      data: data,
+                      upvoted: upvoted,
+                      downvoted: downvoted,
+                      vote: votePost,
                     );
-                  }
 
-                  return GestureDetector(
-                    onTap: () => openPost(post.data.id),
-                    child: post.data.type == "Image"
-                        ? ImagePost(post: post)
-                        : TextPost(post: post),
-                  );
-                },
-                separatorBuilder: (c, i) => separator(),
-                itemCount: posts.length,
+                    if (i == posts.length - 1) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: GestureDetector(
+                          onTap: () => openPost(post.data.id),
+                          child: post.data.type == "Image"
+                              ? ImagePost(post: post)
+                              : TextPost(post: post),
+                        ),
+                      );
+                    }
+
+                    return GestureDetector(
+                      onTap: () => openPost(post.data.id),
+                      child: post.data.type == "Image"
+                          ? ImagePost(post: post)
+                          : TextPost(post: post),
+                    );
+                  },
+                  separatorBuilder: (c, i) => separator(),
+                  itemCount: posts.length,
+                ),
               ),
             ),
           ),

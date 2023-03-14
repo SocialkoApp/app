@@ -16,5 +16,6 @@ void showSnackbar(String message) {
     ),
   );
 
+  snackbarKey.currentState?.clearSnackBars();
   snackbarKey.currentState?.showSnackBar(snackBar);
 }
