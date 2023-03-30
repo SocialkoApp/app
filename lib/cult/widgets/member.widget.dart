@@ -77,7 +77,7 @@ class MemberWidget extends StatelessWidget {
           ),
           if (member.role == "Ruler")
             IconButton(
-              onPressed: () => showSnackbar('This user is the ruler'),
+              onPressed: () => showSnackbar('this user is the manager'),
               icon: Icon(
                 IconlyBold.star,
                 color: AppAssets.colors.lightHighlight,

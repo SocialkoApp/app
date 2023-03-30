@@ -1,4 +1,5 @@
-import 'package:app/auth/screens/forgot_password.screen.dart';
+import 'package:app/auth/api/models/forgot_password.dto.dart';
+import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/utils/api/api.dart';
 import 'package:app/auth/api/models/login.dto.dart';
@@ -16,20 +17,18 @@ import 'package:flutter/material.dart';
 
 import 'register.screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
-  static String routeName = '/login';
+  static String routeName = '/forgot_password';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _identifier = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final TextEditingController _email = TextEditingController();
 
-  bool passwordObscured = true;
   bool loading = false;
 
   @override
@@ -37,19 +36,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  void _togglePasswordObscure() {
-    setState(() {
-      passwordObscured = !passwordObscured;
-    });
-  }
-
-  void _showResentDialog() {
+  void _showSentDialog() {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Email sent'),
         content:
-            const Text('The confirmation link has been sent to your email'),
+            const Text('The reset password link has been sent to your email'),
         actions: [
           TextButton(
             onPressed: Navigator.of(context).pop,
@@ -60,74 +53,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _handleResendEmailConfirmation(String email) async {
-    await API.auth.email
-        .sendConfirmationEmail(SendEmailConfirmationDto(email: email));
-    _showResentDialog();
-  }
-
-  void _handleLogin(LoginDto loginDto) async {
+  void _handleForgot() async {
     try {
       setState(() => loading = true);
 
-      final req = await API.auth.login.login(loginDto);
+      await API.auth.login.resetPasword(_email.text);
 
       setState(() => loading = false);
 
-      LoginResponse response = LoginResponse.fromJson(req);
-
-      await API.auth.saveToken(response.accessToken);
-
-      _redirectLoading();
+      _showSentDialog();
+      _redirectLogin();
     } on BadRequestException {
       setState(() => loading = false);
-      showSnackbar('Please enter your username and password');
-    } on ForbiddenException {
-      setState(() => loading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: AppAssets.colors.darkHighlight,
-          content: Row(
-            children: [
-              Text(
-                'You didn\'t confirm your email',
-                style: TextStyle(
-                  color: AppAssets.colors.light,
-                ),
-              ),
-              const Spacer(),
-              GestureDetector(
-                onTap: () => _handleResendEmailConfirmation(loginDto.username),
-                child: Text(
-                  'Resend',
-                  style: TextStyle(
-                    color: AppAssets.colors.primary,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    } on UnauthorizedException {
-      setState(() => loading = false);
-      showSnackbar('This user doesn\'t exist');
+      showSnackbar('Please enter your email');
     } catch (e) {
       setState(() => loading = false);
       showSnackbar('An error occured.');
     }
   }
 
-  void _forgotPassword() {
-    Navigator.of(context).pushReplacementNamed(ForgotPasswordScreen.routeName);
-  }
-
-  void _redirectLoading() {
-    Navigator.of(context).pushReplacementNamed(InitializingScreen.routeName);
-  }
-
-  void _handleRedirectRegister() {
-    Navigator.of(context).pushReplacementNamed(RegisterScreen.routeName);
+  void _redirectLogin() {
+    Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
   }
 
   @override
@@ -163,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      'welcome to socialko',
+                      'enter your email',
                       style: TextStyle(
                         fontSize: 32.0,
                         fontWeight: FontWeight.bold,
@@ -171,42 +117,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: height * 0.05),
                     SocialkoAuthInput(
-                      controller: _identifier,
-                      label: 'username or email',
-                    ),
-                    const SizedBox(height: 10.0),
-                    SocialkoAuthInput(
-                      controller: _password,
-                      label: 'password',
-                      obscured: passwordObscured,
-                      suffixIcon: IconButton(
-                        onPressed: _togglePasswordObscure,
-                        icon: passwordObscured
-                            ? Icon(
-                                Icons.visibility,
-                                color: AppAssets.colors.lightHighlight,
-                              )
-                            : Icon(
-                                Icons.visibility_off,
-                                color: AppAssets.colors.lightHighlight,
-                              ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: ForgotPassword(onPressed: () => _forgotPassword()),
+                      controller: _email,
+                      label: 'email',
                     ),
                     const SizedBox(height: 20.0),
                     SocialkoButton(
-                      label: 'login',
+                      label: 'send reset link',
                       width: width * 0.8,
                       height: 55,
-                      onPressed: () => _handleLogin(
-                        LoginDto(
-                          username: _identifier.text,
-                          password: _password.text,
-                        ),
-                      ),
+                      onPressed: () => _handleForgot(),
                     ),
                   ],
                 ),
@@ -218,15 +137,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'don\' have an account yet?',
+                      'went the wrong way?',
                       style: TextStyle(
                         color: AppAssets.colors.lightHighlight,
                       ),
                     ),
                     TextButton(
-                      onPressed: () => _handleRedirectRegister(),
+                      onPressed: () => _redirectLogin(),
                       child: Text(
-                        'sign up',
+                        'back to login',
                         style: TextStyle(
                           color: AppAssets.colors.primary,
                         ),
@@ -253,7 +172,7 @@ class ForgotPassword extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       child: Text(
-        'forgot password?',
+        'Forgot password?',
         style: TextStyle(
           color: AppAssets.colors.lightHighlight,
           // fontSize: 14.0,

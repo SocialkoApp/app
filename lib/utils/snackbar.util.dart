@@ -8,7 +8,7 @@ void showSnackbar(String message) {
     content: Center(
       heightFactor: 1,
       child: Text(
-        message,
+        message.toLowerCase(),
         style: TextStyle(
           color: AppAssets.colors.light,
         ),

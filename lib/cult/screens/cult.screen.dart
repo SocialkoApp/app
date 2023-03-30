@@ -19,7 +19,8 @@ class CultScreen extends ConsumerWidget {
 
     return c.when(
       loading: () => const LoadingScreen(),
-      error: (err, stack) => const ErrorScreen(error: 'You\'re not in a cult'),
+      error: (err, stack) =>
+          const ErrorScreen(error: 'you\'re not in an organization'),
       data: (cult) => Scaffold(
         backgroundColor: AppAssets.colors.dark,
         body: Padding(
@@ -54,7 +55,7 @@ class CultScreen extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        '${cult.count.members} Followers',
+                        '${cult.count.members} members',
                         style: TextStyle(
                           color: AppAssets.colors.lightHighlight,
                           fontSize: 16.0,
@@ -96,7 +97,7 @@ class CultScreen extends ConsumerWidget {
                       onPressed: () => Navigator.of(context)
                           .pushNamed(JoinRequestsScreen.routeName),
                       label: Text(
-                        'Join Requests',
+                        'join requests',
                         style: TextStyle(
                           color: AppAssets.colors.light,
                         ),
@@ -116,7 +117,7 @@ class CultScreen extends ConsumerWidget {
                       color: AppAssets.colors.light,
                     ),
                     label: Text(
-                      'Followers',
+                      'members',
                       style: TextStyle(
                         color: AppAssets.colors.light,
                       ),

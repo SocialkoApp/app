@@ -28,19 +28,19 @@ class JoinRequestsScreen extends ConsumerWidget {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(
-            'Accept $firstName $lastName',
+            'accept $firstName $lastName',
             style: TextStyle(
               color: AppAssets.colors.light,
               fontWeight: FontWeight.bold,
             ),
           ),
           content: Text(
-            'Are you sure you would like to accept the user $firstName $lastName into the cult?',
+            'are you sure you would like to accept the user $firstName $lastName into the organization?',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: const Text('cancel'),
             ),
             TextButton(
               onPressed: () => {
@@ -48,7 +48,7 @@ class JoinRequestsScreen extends ConsumerWidget {
                 ref.read(asyncCultProvider.notifier).acceptRequest(id)
               },
               child: Text(
-                'Accept',
+                'accept',
                 style: TextStyle(
                   color: AppAssets.colors.red,
                 ),
@@ -64,19 +64,19 @@ class JoinRequestsScreen extends ConsumerWidget {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(
-            'Decline $firstName $lastName',
+            'decline $firstName $lastName',
             style: TextStyle(
               color: AppAssets.colors.light,
               fontWeight: FontWeight.bold,
             ),
           ),
           content: Text(
-            'Are you sure you would like to decline the user $firstName $lastName from joining the cult?',
+            'are you sure you would like to decline the user $firstName $lastName from joining the organization?',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: const Text('cancel'),
             ),
             TextButton(
               onPressed: () => {
@@ -84,7 +84,7 @@ class JoinRequestsScreen extends ConsumerWidget {
                 ref.read(asyncCultProvider.notifier).declineRequest(id)
               },
               child: Text(
-                'Decline',
+                'decline',
                 style: TextStyle(
                   color: AppAssets.colors.red,
                 ),
@@ -113,7 +113,7 @@ class JoinRequestsScreen extends ConsumerWidget {
                   const SizedBox(height: 20.0),
                   if (cult.joinRequests == null || cult.joinRequests!.isEmpty)
                     Text(
-                      'No join requests',
+                      'no join requests',
                       style: TextStyle(
                         color: AppAssets.colors.light,
                       ),

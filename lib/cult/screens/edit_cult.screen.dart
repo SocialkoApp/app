@@ -94,7 +94,7 @@ class EditCultScreen extends ConsumerWidget {
                             Navigator.of(context).pop(),
                           },
                           child: Text(
-                            'Done',
+                            'done',
                             style: TextStyle(
                               color: AppAssets.colors.primary,
                               fontSize: 18.0,
@@ -116,7 +116,7 @@ class EditCultScreen extends ConsumerWidget {
                     TextButton(
                       onPressed: () => changeIcon(),
                       child: const Text(
-                        'Edit Cult Icon',
+                        'edit organization icon',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
@@ -124,11 +124,11 @@ class EditCultScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 10.0),
-                    MeInput(controller: name, helper: 'Name'),
+                    MeInput(controller: name, helper: 'name'),
                     const SizedBox(height: 10.0),
                     MeInput(
                       controller: description,
-                      helper: 'Bio',
+                      helper: 'description',
                       maxLength: 200,
                     ),
                     const SizedBox(height: 20.0),

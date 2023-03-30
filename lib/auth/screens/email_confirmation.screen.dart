@@ -26,7 +26,7 @@ class EmailConfirmationScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 100.0),
               const Text(
-                'Confirm email',
+                'confirm email',
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class EmailConfirmationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               const Text(
-                'To continue please click the link in the email we just sent you.\n\nPlease check the spam/junk folder.',
+                'to continue please click the link in the email we just sent you.\n\nplease check the spam/junk folder.',
                 style: TextStyle(
                   fontSize: 15.0,
                 ),
@@ -43,7 +43,7 @@ class EmailConfirmationScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: SocialkoButton(
-                  label: 'OK',
+                  label: 'ok',
                   onPressed: () => handleOk(),
                   width: width,
                   height: 50.0,

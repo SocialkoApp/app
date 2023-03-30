@@ -21,15 +21,15 @@ class _BaseScreenState extends ConsumerState<BaseScreen> {
   final List<BottomNavigationBarItem> _items = [
     const BottomNavigationBarItem(
       icon: Icon(IconlyBold.home),
-      label: 'Home',
+      label: 'home',
     ),
     const BottomNavigationBarItem(
       icon: Icon(IconlyBold.user3),
-      label: 'Cult',
+      label: 'organization',
     ),
     const BottomNavigationBarItem(
       icon: Icon(IconlyBold.profile),
-      label: 'Profile',
+      label: 'profile',
     ),
   ];
 

@@ -85,7 +85,7 @@ class MyProfileScreen extends ConsumerWidget {
                         MeScreen.routeName,
                       ),
                       label: Text(
-                        'Edit Profile',
+                        'edit profile',
                         style: TextStyle(
                           color: AppAssets.colors.light,
                         ),
@@ -106,7 +106,7 @@ class MyProfileScreen extends ConsumerWidget {
                         SettingsScreen.routeName,
                       ),
                       label: Text(
-                        'Settings',
+                        'settings',
                         style: TextStyle(
                           color: AppAssets.colors.light,
                         ),
@@ -135,7 +135,7 @@ class MyProfileScreen extends ConsumerWidget {
                   ),
                   onPressed: () => logout(),
                   label: Text(
-                    'Logout',
+                    'logout',
                     style: TextStyle(
                       color: AppAssets.colors.light,
                     ),

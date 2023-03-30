@@ -17,10 +17,10 @@ class TopText extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Text(
         isInCult
-            ? 'Feed'
+            ? 'feed'
             : hasJoinRequest
-                ? 'Requested Cult'
-                : 'Cults',
+                ? 'requested organization'
+                : 'organizations',
         style: TextStyle(
           fontSize: 22.0,
           color: AppAssets.colors.light,

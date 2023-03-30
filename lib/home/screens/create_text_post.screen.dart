@@ -19,7 +19,7 @@ class CreateTextPost extends ConsumerStatefulWidget {
 class _CreateTextPostState extends ConsumerState<CreateTextPost> {
   final title = TextEditingController();
   final contentController = TextEditingController();
-  String content = 'Content';
+  String content = 'content';
 
   void goBack() {
     Navigator.of(context).pop();
@@ -54,7 +54,7 @@ class _CreateTextPostState extends ConsumerState<CreateTextPost> {
                   TextButton(
                     onPressed: () => createPost(),
                     child: Text(
-                      'Create',
+                      'create',
                       style: TextStyle(
                         color: AppAssets.colors.primary,
                         fontSize: 18.0,
@@ -66,7 +66,7 @@ class _CreateTextPostState extends ConsumerState<CreateTextPost> {
               ),
               const SizedBox(height: 20.0),
               Text(
-                'Create Text Post',
+                'create text post',
                 style: TextStyle(
                   color: AppAssets.colors.light,
                   fontSize: 24.0,
@@ -80,7 +80,7 @@ class _CreateTextPostState extends ConsumerState<CreateTextPost> {
                   decoration: AppAssets.styles.inputBoxDecoration,
                   child: MeInput(
                     controller: title,
-                    helper: 'Title',
+                    helper: 'title',
                     maxLength: 100,
                   ),
                 ),

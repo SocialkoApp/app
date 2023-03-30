@@ -22,12 +22,12 @@ class SettingsScreen extends ConsumerWidget {
 
     void resetPassword(String email) async {
       if (email == 'invalid') {
-        return showSnackbar('There was an error');
+        return showSnackbar('there was an error');
       }
 
       await API.auth.login.resetPasword(email);
 
-      showSnackbar('Check your email inbox');
+      showSnackbar('check your email inbox');
     }
 
     return me.when(
@@ -48,7 +48,7 @@ class SettingsScreen extends ConsumerWidget {
                   const BackWidget(),
                   const SizedBox(height: 20.0),
                   Text(
-                    'Settings',
+                    'settings',
                     style: TextStyle(
                       color: AppAssets.colors.light,
                       fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class SettingsScreen extends ConsumerWidget {
                     ),
                     onPressed: () => resetPassword(m.user.email ?? 'invalid'),
                     label: Text(
-                      'Reset Password',
+                      'reset password',
                       style: TextStyle(
                         color: AppAssets.colors.light,
                       ),

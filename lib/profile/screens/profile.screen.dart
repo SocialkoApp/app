@@ -48,7 +48,7 @@ class ProfileScreen extends ConsumerWidget {
                           MeScreen.routeName,
                         ),
                         child: Text(
-                          'Edit',
+                          'edit',
                           style: TextStyle(
                             color: AppAssets.colors.primary,
                             fontSize: 18.0,

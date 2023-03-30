@@ -1,4 +1,5 @@
 import 'package:app/auth/screens/email_confirmation.screen.dart';
+import 'package:app/auth/screens/forgot_password.screen.dart';
 import 'package:app/common/globals.dart';
 import 'package:app/common/screens/base.screen.dart';
 import 'package:app/cult/screens/create.screen.dart';
@@ -40,6 +41,8 @@ class App extends StatelessWidget {
         JoinRequestsScreen.routeName: (context) => const JoinRequestsScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
         EditCultScreen.routeName: (context) => const EditCultScreen(),
+        ForgotPasswordScreen.routeName: (context) =>
+            const ForgotPasswordScreen(),
         CreateCultScreen.routeName: (context) => const CreateCultScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),

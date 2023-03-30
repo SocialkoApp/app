@@ -40,14 +40,14 @@ class _CreateCultScreenState extends ConsumerState<CreateCultScreen> {
       aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       uiSettings: [
         AndroidUiSettings(
-          toolbarTitle: 'Choose an Icon',
+          toolbarTitle: 'choose an icon',
           toolbarColor: AppAssets.colors.darkHighlight,
           toolbarWidgetColor: AppAssets.colors.light,
           initAspectRatio: CropAspectRatioPreset.square,
           lockAspectRatio: true,
         ),
         IOSUiSettings(
-          title: 'Choose an Icon',
+          title: 'choose an icon',
           aspectRatioLockEnabled: true,
           aspectRatioPickerButtonHidden: true,
         ),
@@ -90,7 +90,7 @@ class _CreateCultScreenState extends ConsumerState<CreateCultScreen> {
                         Navigator.of(context).pop(),
                       },
                       child: Text(
-                        'Create',
+                        'create',
                         style: TextStyle(
                           color: AppAssets.colors.primary,
                           fontSize: 18.0,
@@ -112,7 +112,7 @@ class _CreateCultScreenState extends ConsumerState<CreateCultScreen> {
                 TextButton(
                   onPressed: () => selectIcon(),
                   child: const Text(
-                    'Set Cult Icon',
+                    'set organization icon',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
@@ -122,7 +122,7 @@ class _CreateCultScreenState extends ConsumerState<CreateCultScreen> {
                 const SizedBox(height: 10.0),
                 MeInput(
                   controller: name,
-                  helper: 'Name',
+                  helper: 'name',
                   maxLength: 16,
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(
@@ -133,7 +133,7 @@ class _CreateCultScreenState extends ConsumerState<CreateCultScreen> {
                 const SizedBox(height: 10.0),
                 MeInput(
                   controller: description,
-                  helper: 'Description',
+                  helper: 'description',
                   maxLength: 200,
                 ),
                 const SizedBox(height: 20.0),

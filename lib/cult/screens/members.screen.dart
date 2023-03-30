@@ -30,14 +30,14 @@ class MembersScreen extends ConsumerWidget {
       showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: Text('Remove $firstName $lastName from cult?'),
+          title: Text('remove $firstName $lastName from cult?'),
           content: Text(
-            'Are you sure you want to remove $firstName $lastName from this cult? All their posts will be removed and their profile picture reset.',
+            'are you sure you want to remove $firstName $lastName from this organizations? all their posts will be removed.',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Don\'t remove'),
+              child: const Text('don\'t remove'),
             ),
             TextButton(
               onPressed: () => {
@@ -45,7 +45,7 @@ class MembersScreen extends ConsumerWidget {
                 ref.read(asyncCultProvider.notifier).removeUser(username)
               },
               child: Text(
-                'Remove',
+                'remove',
                 style: TextStyle(
                   color: AppAssets.colors.red,
                 ),
@@ -61,7 +61,7 @@ class MembersScreen extends ConsumerWidget {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(
-            'Add New User',
+            'add new user',
             style: TextStyle(
               color: AppAssets.colors.light,
               fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class MembersScreen extends ConsumerWidget {
             controller: addUserController,
             decoration: InputDecoration(
               label: Text(
-                'Username',
+                'username',
                 style: TextStyle(color: AppAssets.colors.light),
               ),
               border: OutlineInputBorder(
@@ -84,7 +84,7 @@ class MembersScreen extends ConsumerWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: const Text('cancel'),
             ),
             TextButton(
               onPressed: () => {
@@ -93,7 +93,7 @@ class MembersScreen extends ConsumerWidget {
                     .read(asyncCultProvider.notifier)
                     .addUser(addUserController.text)
               },
-              child: const Text('Add'),
+              child: const Text('add'),
             ),
           ],
         ),

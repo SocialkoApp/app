@@ -134,7 +134,7 @@ class PostScreen extends ConsumerWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      hintText: 'Add new comment',
+                      hintText: 'add new comment',
                       suffixIcon: IconButton(
                         onPressed: () => addComment(),
                         icon: Icon(

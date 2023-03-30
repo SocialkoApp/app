@@ -38,14 +38,14 @@ class MeScreen extends ConsumerWidget {
         aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
         uiSettings: [
           AndroidUiSettings(
-            toolbarTitle: 'Crop Your Profile Picture',
+            toolbarTitle: 'crop your profile picture',
             toolbarColor: AppAssets.colors.darkHighlight,
             toolbarWidgetColor: AppAssets.colors.light,
             initAspectRatio: CropAspectRatioPreset.square,
             lockAspectRatio: true,
           ),
           IOSUiSettings(
-            title: 'Crop Your Profile Picture',
+            title: 'crop your profile picture',
             aspectRatioLockEnabled: true,
             aspectRatioPickerButtonHidden: true,
           ),
@@ -97,7 +97,7 @@ class MeScreen extends ConsumerWidget {
                             Navigator.of(context).pop(),
                           },
                           child: Text(
-                            'Done',
+                            'done',
                             style: TextStyle(
                               color: AppAssets.colors.primary,
                               fontSize: 18.0,
@@ -127,7 +127,7 @@ class MeScreen extends ConsumerWidget {
                     TextButton(
                       onPressed: () => changeProfilePicture(),
                       child: const Text(
-                        'Edit Profile Picture',
+                        'edit profile picture',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
@@ -135,13 +135,13 @@ class MeScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 10.0),
-                    MeInput(controller: firstName, helper: 'First name'),
+                    MeInput(controller: firstName, helper: 'first name'),
                     const SizedBox(height: 10.0),
-                    MeInput(controller: lastName, helper: 'Last name'),
+                    MeInput(controller: lastName, helper: 'last name'),
                     const SizedBox(height: 20.0),
                     MeInput(
                       controller: bio,
-                      helper: 'Bio',
+                      helper: 'bio',
                       maxLength: 200,
                     ),
                     const SizedBox(height: 20.0),

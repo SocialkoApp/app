@@ -18,7 +18,7 @@ class BackWidget extends StatelessWidget {
           ),
         ),
         Text(
-          'Back',
+          'back',
           style: TextStyle(
             color: AppAssets.colors.light,
             fontSize: 18.0,

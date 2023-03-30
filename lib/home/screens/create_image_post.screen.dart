@@ -41,14 +41,14 @@ class _CreateImagePostState extends ConsumerState<CreateImagePost> {
       sourcePath: image!.path,
       uiSettings: [
         AndroidUiSettings(
-          toolbarTitle: 'Crop Your Profile Picture',
+          toolbarTitle: 'crop your profile picture',
           toolbarColor: AppAssets.colors.darkHighlight,
           toolbarWidgetColor: AppAssets.colors.light,
           initAspectRatio: CropAspectRatioPreset.square,
           lockAspectRatio: true,
         ),
         IOSUiSettings(
-          title: 'Crop Your Profile Picture',
+          title: 'prop your profile picture',
         ),
       ],
     );
@@ -94,7 +94,7 @@ class _CreateImagePostState extends ConsumerState<CreateImagePost> {
                   TextButton(
                     onPressed: () => createPost(),
                     child: Text(
-                      'Create',
+                      'create',
                       style: TextStyle(
                         color: AppAssets.colors.primary,
                         fontSize: 18.0,
@@ -106,7 +106,7 @@ class _CreateImagePostState extends ConsumerState<CreateImagePost> {
               ),
               const SizedBox(height: 20.0),
               Text(
-                'Create Image Post',
+                'create image post',
                 style: TextStyle(
                   color: AppAssets.colors.light,
                   fontSize: 24.0,
@@ -152,7 +152,7 @@ class _CreateImagePostState extends ConsumerState<CreateImagePost> {
                   decoration: AppAssets.styles.inputBoxDecoration,
                   child: MeInput(
                     controller: description,
-                    helper: 'Description',
+                    helper: 'description',
                   ),
                 ),
               ),
