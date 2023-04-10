@@ -119,6 +119,7 @@ class MyProfileScreen extends ConsumerWidget {
                   p.bio!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontSize: 16.0,
                     color: AppAssets.colors.lightHighlight,
                   ),
                 ),

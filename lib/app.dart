@@ -11,6 +11,7 @@ import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/auth/screens/register.screen.dart';
 import 'package:app/home/screens/post.screen.dart';
 import 'package:app/profile/screens/me.screen.dart';
+import 'package:app/profile/screens/my_profile.screen.dart';
 import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/profile/screens/settings.screen.dart';
 import 'package:app/utils/assets.util.dart';
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: InitializingScreen.routeName,
       scaffoldMessengerKey: snackbarKey,
       routes: {
@@ -33,6 +35,7 @@ class App extends StatelessWidget {
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         BaseScreen.routeName: (context) => const BaseScreen(),
         ProfileScreen.routeName: (context) => const ProfileScreen(),
+        MyProfileScreen.routeName: (context) => const MyProfileScreen(),
         MeScreen.routeName: (context) => const MeScreen(),
         PostScreen.routeName: (context) => const PostScreen(),
         CreateTextPost.routeName: (context) => const CreateTextPost(),

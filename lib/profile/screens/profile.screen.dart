@@ -1,9 +1,7 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/common/widgets/back.widget.dart';
-import 'package:app/profile/providers/me.provider.dart';
 import 'package:app/profile/providers/profile.provider.dart';
-import 'package:app/profile/screens/me.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +18,7 @@ class ProfileScreen extends ConsumerWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    final profile = args.me
-        ? ref.watch(asyncMeProvider)
-        : ref.watch(profileProvider.call(args.username));
+    final profile = ref.watch(profileProvider.call(args.username));
 
     return profile.when(
       loading: () => const LoadingScreen(),
@@ -37,27 +33,7 @@ class ProfileScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 45.0),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const BackWidget(),
-                    if (args.me)
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pushNamed(
-                          MeScreen.routeName,
-                        ),
-                        child: Text(
-                          'edit',
-                          style: TextStyle(
-                            color: AppAssets.colors.primary,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      )
-                  ],
-                ),
+                const BackWidget(),
                 const SizedBox(height: 20.0),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(height * 0.4),
@@ -100,11 +76,7 @@ class ProfileScreen extends ConsumerWidget {
 }
 
 class ProfileArgs {
-  ProfileArgs(
-    this.username, {
-    this.me = false,
-  });
+  ProfileArgs(this.username);
 
   final String username;
-  final bool me;
 }

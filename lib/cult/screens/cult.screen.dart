@@ -17,6 +17,14 @@ class CultScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final c = ref.watch(asyncCultProvider);
 
+    String memberCount(int count) {
+      if (count == 1) {
+        return '$count member';
+      }
+
+      return '$count members';
+    }
+
     return c.when(
       loading: () => const LoadingScreen(),
       error: (err, stack) =>
@@ -55,7 +63,7 @@ class CultScreen extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        '${cult.count.members} members',
+                        memberCount(cult.count.members),
                         style: TextStyle(
                           color: AppAssets.colors.lightHighlight,
                           fontSize: 16.0,
@@ -130,6 +138,7 @@ class CultScreen extends ConsumerWidget {
                 cult.description,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontSize: 16.0,
                   color: AppAssets.colors.lightHighlight,
                 ),
               ),

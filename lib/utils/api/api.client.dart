@@ -13,7 +13,7 @@ import './api.dart';
 
 // Class that holds all the network requests
 class ApiClient {
-  static const String apiUrl = 'http://172.16.42.4:4000';
+  static const String apiUrl = 'https://api.socialko.cc';
 
   // GET function
   // Retrieves JSON data from the API to the app

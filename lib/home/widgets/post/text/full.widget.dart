@@ -28,6 +28,7 @@ class FullTextPost extends StatelessWidget {
           MarkdownBody(
             data: p.description ?? '',
             styleSheet: MarkdownStyleSheet(
+              textScaleFactor: 1.1,
               blockquoteDecoration: BoxDecoration(
                 color: AppAssets.colors.primary,
               ),

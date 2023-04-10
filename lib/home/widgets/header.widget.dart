@@ -2,6 +2,7 @@ import 'package:app/cult/screens/create.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
+import 'package:app/profile/screens/my_profile.screen.dart';
 import 'package:app/profile/screens/profile.screen.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/utils/pfp.util.dart';
@@ -20,21 +21,10 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     String subtitle() {
       if (profile.cult != null) {
-        return '@${profile.user.username} • ${profile.cult?.cult?.name} [${profile.cult?.role}]';
+        return '@${profile.user.username} • ${profile.cult?.cult?.name} [${profile.cult?.role == 'Ruler' ? 'Manager' : 'Member'}]';
       }
 
       return '@${profile.user.username}';
-    }
-
-    void openProfile(String username) {
-      Navigator.pushNamed(
-        context,
-        ProfileScreen.routeName,
-        arguments: ProfileArgs(
-          username,
-          me: true,
-        ),
-      );
     }
 
     void redirect(String route) {
@@ -48,44 +38,41 @@ class Header extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () => openProfile(profile.user.username),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50.0),
-                  child: Image.network(
-                    assignProfilePicture(profile.profilePicture),
-                    width: 55.0,
-                    height: 55.0,
-                    fit: BoxFit.cover,
+          Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50.0),
+                child: Image.network(
+                  assignProfilePicture(profile.profilePicture),
+                  width: 55.0,
+                  height: 55.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(width: 10.0),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${profile.firstName} ${profile.lastName}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppAssets.colors.light,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10.0),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${profile.firstName} ${profile.lastName}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppAssets.colors.light,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  Text(
+                    subtitle(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppAssets.colors.lightHighlight,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      subtitle(),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppAssets.colors.lightHighlight,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
           IconButton(
             onPressed: profile.cult == null
