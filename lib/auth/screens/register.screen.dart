@@ -161,6 +161,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       const SizedBox(height: 30.0),
+                      Text(
+                        'By signing up, you agree to our Terms of Service and Privacy Policy',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppAssets.colors.lightHighlight,
+                        ),
+                      ),
+                      const SizedBox(height: 30.0),
                       SocialkoButton(
                         label: 'Sign Up',
                         width: width * 0.8,
