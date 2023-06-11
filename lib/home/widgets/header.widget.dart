@@ -1,4 +1,4 @@
-import 'package:app/cult/screens/create.screen.dart';
+import 'package:app/organization/screens/create.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/profile/api/models/profile.response.dart';
@@ -18,8 +18,8 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String subtitle() {
-      if (profile.cult != null) {
-        return '@${profile.user.username} • ${profile.cult?.cult?.name} [${profile.cult?.role == 'Ruler' ? 'Manager' : 'Member'}]';
+      if (profile.organization != null) {
+        return '@${profile.user.username} • ${profile.organization?.organization?.name} [${profile.organization?.role}]';
       }
 
       return '@${profile.user.username}';
@@ -73,9 +73,9 @@ class Header extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: profile.cult == null
+            onPressed: profile.organization == null
                 ? () =>
-                    Navigator.of(context).pushNamed(CreateCultScreen.routeName)
+                    Navigator.of(context).pushNamed(CreateOrgScreen.routeName)
                 : () => showDialog(
                       barrierDismissible: true,
                       barrierColor: Colors.transparent,

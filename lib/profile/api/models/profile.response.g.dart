@@ -17,13 +17,13 @@ ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : ProfilePicture.fromJson(
               json['profilePicture'] as Map<String, dynamic>),
-      cult: json['cult'] == null
+      organization: json['organization'] == null
           ? null
-          : ProfileCult.fromJson(json['cult'] as Map<String, dynamic>),
-      cultJoinRequest: json['cultJoinRequest'] == null
+          : ProfileOrg.fromJson(json['organization'] as Map<String, dynamic>),
+      organizationJoinRequest: json['organizationJoinRequest'] == null
           ? null
-          : CultJoinRequest.fromJson(
-              json['cultJoinRequest'] as Map<String, dynamic>),
+          : OrgJoinRequest.fromJson(
+              json['organizationJoinRequest'] as Map<String, dynamic>),
       updatedAt: json['updatedAt'] as String?,
     );
 
@@ -35,7 +35,7 @@ Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
       'bio': instance.bio,
       'user': instance.user,
       'profilePicture': instance.profilePicture,
-      'cult': instance.cult,
-      'cultJoinRequest': instance.cultJoinRequest,
+      'organization': instance.organization,
+      'organizationJoinRequest': instance.organizationJoinRequest,
       'updatedAt': instance.updatedAt,
     };

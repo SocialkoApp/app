@@ -32,9 +32,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>To create images for upload for various in-app purposes (profile picture, posts, cult icons)</string>
+	<string>To create images for upload for various in-app purposes (profile picture, posts, organization icons)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To select images for upload for various in-app purposes (profile picture, posts, cult icons)</string>
+	<string>To select images for upload for various in-app purposes (profile picture, posts, organization icons)</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -39,11 +39,11 @@ class AsyncMe extends _$AsyncMe {
     });
   }
 
-  Future<void> createCult(String name, String description, File file) async {
+  Future<void> createOrg(String name, String description, File file) async {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await API.cults.manage.create(name, description, file);
+      await API.orgs.manage.create(name, description, file);
 
       return _fetchMe();
     });

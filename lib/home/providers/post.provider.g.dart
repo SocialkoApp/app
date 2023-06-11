@@ -6,7 +6,7 @@ part of 'post.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$asyncPostHash() => r'c38d90fd505e7f7833165adedb93b63a672090c7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,21 +29,73 @@ class _SystemHash {
   }
 }
 
-String _$AsyncPostHash() => r'be7e2080e19b9f2bb936a4f41b574723a1e16340';
+abstract class _$AsyncPost
+    extends BuildlessAutoDisposeAsyncNotifier<PostModel> {
+  late final String id;
+
+  FutureOr<PostModel> build(
+    String id,
+  );
+}
+
+/// See also [AsyncPost].
+@ProviderFor(AsyncPost)
+const asyncPostProvider = AsyncPostFamily();
+
+/// See also [AsyncPost].
+class AsyncPostFamily extends Family<AsyncValue<PostModel>> {
+  /// See also [AsyncPost].
+  const AsyncPostFamily();
+
+  /// See also [AsyncPost].
+  AsyncPostProvider call(
+    String id,
+  ) {
+    return AsyncPostProvider(
+      id,
+    );
+  }
+
+  @override
+  AsyncPostProvider getProviderOverride(
+    covariant AsyncPostProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'asyncPostProvider';
+}
 
 /// See also [AsyncPost].
 class AsyncPostProvider
     extends AutoDisposeAsyncNotifierProviderImpl<AsyncPost, PostModel> {
+  /// See also [AsyncPost].
   AsyncPostProvider(
     this.id,
-  ) : super(
+  ) : super.internal(
           () => AsyncPost()..id = id,
           from: asyncPostProvider,
           name: r'asyncPostProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$AsyncPostHash,
+                  : _$asyncPostHash,
+          dependencies: AsyncPostFamily._dependencies,
+          allTransitiveDependencies: AsyncPostFamily._allTransitiveDependencies,
         );
 
   final String id;
@@ -63,55 +115,11 @@ class AsyncPostProvider
 
   @override
   FutureOr<PostModel> runNotifierBuild(
-    covariant _$AsyncPost notifier,
+    covariant AsyncPost notifier,
   ) {
     return notifier.build(
       id,
     );
   }
 }
-
-typedef AsyncPostRef = AutoDisposeAsyncNotifierProviderRef<PostModel>;
-
-/// See also [AsyncPost].
-final asyncPostProvider = AsyncPostFamily();
-
-class AsyncPostFamily extends Family<AsyncValue<PostModel>> {
-  AsyncPostFamily();
-
-  AsyncPostProvider call(
-    String id,
-  ) {
-    return AsyncPostProvider(
-      id,
-    );
-  }
-
-  @override
-  AutoDisposeAsyncNotifierProviderImpl<AsyncPost, PostModel>
-      getProviderOverride(
-    covariant AsyncPostProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'asyncPostProvider';
-}
-
-abstract class _$AsyncPost
-    extends BuildlessAutoDisposeAsyncNotifier<PostModel> {
-  late final String id;
-
-  FutureOr<PostModel> build(
-    String id,
-  );
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -4,6 +4,7 @@ import 'package:app/utils/snackbar.util.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:async/async.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:io';
 
 import 'package:app/utils/api/exceptions/bad_request.exception.dart';
@@ -13,7 +14,7 @@ import './api.dart';
 
 // Class that holds all the network requests
 class ApiClient {
-  static const String apiUrl = 'https://api.socialko.cc';
+  static String apiUrl = dotenv.env['API_URL'] ?? 'https://api.socialko.cc';
 
   // GET function
   // Retrieves JSON data from the API to the app

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class TopText extends StatelessWidget {
   const TopText({
     super.key,
-    required this.isInCult,
+    required this.isInOrg,
     required this.hasJoinRequest,
   });
 
-  final bool isInCult;
+  final bool isInOrg;
   final bool hasJoinRequest;
 
   @override
@@ -16,7 +16,7 @@ class TopText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Text(
-        isInCult
+        isInOrg
             ? 'feed'
             : hasJoinRequest
                 ? 'requested organization'

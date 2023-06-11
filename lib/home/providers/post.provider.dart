@@ -9,6 +9,21 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'post.provider.g.dart';
 
+// @riverpod
+// class AsyncPost extends _$AsyncPost {
+//   Future<PostModel> _fetchPost(String id) async {
+//     final resp = await API.home.posts.getSingle(id);
+
+//     return mapPost(resp);
+//   }
+
+//   @override
+//   FutureOr<PostModel> build(String id) async {
+//     return _fetchPost(id);
+//   }
+
+// }
+
 @riverpod
 class AsyncPost extends _$AsyncPost {
   Future<PostModel> _fetchPost(String id) async {
@@ -17,8 +32,7 @@ class AsyncPost extends _$AsyncPost {
     return mapPost(resp);
   }
 
-  @override
-  FutureOr<PostModel> build(String id) {
+  FutureOr<PostModel> build(String id) async {
     return _fetchPost(id);
   }
 

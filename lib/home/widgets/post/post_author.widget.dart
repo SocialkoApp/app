@@ -39,7 +39,7 @@ class PostAuthor extends StatelessWidget {
                 ),
               ),
               Text(
-                '@${profile.user.username} • ${profile.cult?.role}',
+                '@${profile.user.username} • ${profile.organization?.role}',
                 style: TextStyle(
                   fontSize: 12,
                   color: AppAssets.colors.lightHighlight,

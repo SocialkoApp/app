@@ -1,4 +1,4 @@
-import 'package:app/cult/screens/cult.screen.dart';
+import 'package:app/organization/screens/org.screen.dart';
 import 'package:app/home/screens/home.screen.dart';
 import 'package:app/profile/screens/my_profile.screen.dart';
 import 'package:app/utils/assets.util.dart';
@@ -43,7 +43,7 @@ class _BaseScreenState extends ConsumerState<BaseScreen> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const HomeScreen(),
-      const CultScreen(),
+      const OrgScreen(),
       const MyProfileScreen(),
     ];
 

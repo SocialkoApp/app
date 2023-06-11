@@ -1,7 +1,7 @@
 import 'package:app/common/screens/error.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
-import 'package:app/home/widgets/cult/cult.widget.dart';
-import 'package:app/home/widgets/cult/cults.widget.dart';
+import 'package:app/home/widgets/org/org.widget.dart';
+import 'package:app/home/widgets/org/orgs.widget.dart';
 import 'package:app/home/widgets/feed_text.widget.dart';
 import 'package:app/home/widgets/header.widget.dart';
 import 'package:app/home/widgets/post/posts.widget.dart';
@@ -28,16 +28,16 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: 40.0),
             Header(profile: profile),
             TopText(
-              isInCult: profile.cult != null,
-              hasJoinRequest: profile.cultJoinRequest != null,
+              isInOrg: profile.organization != null,
+              hasJoinRequest: profile.organizationJoinRequest != null,
             ),
             const SizedBox(height: 10.0),
-            profile.cult != null
+            profile.organization != null
                 ? const PostsWidget()
-                : profile.cultJoinRequest == null
-                    ? const CultsWidget()
-                    : CultWidget(
-                        cult: profile.cultJoinRequest!.cult,
+                : profile.organizationJoinRequest == null
+                    ? const OrgsWidget()
+                    : OrganizationWidget(
+                        org: profile.organizationJoinRequest!.org,
                         onJoin: null,
                       ),
           ],

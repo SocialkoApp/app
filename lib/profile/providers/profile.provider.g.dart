@@ -6,7 +6,7 @@ part of 'profile.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$profileHash() => r'7355ffdbcdc77c20fd220be82b26fa897831b729';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,13 +29,56 @@ class _SystemHash {
   }
 }
 
-String _$profileHash() => r'7355ffdbcdc77c20fd220be82b26fa897831b729';
+typedef ProfileRef = AutoDisposeFutureProviderRef<ProfileResponse>;
+
+/// See also [profile].
+@ProviderFor(profile)
+const profileProvider = ProfileFamily();
+
+/// See also [profile].
+class ProfileFamily extends Family<AsyncValue<ProfileResponse>> {
+  /// See also [profile].
+  const ProfileFamily();
+
+  /// See also [profile].
+  ProfileProvider call(
+    String username,
+  ) {
+    return ProfileProvider(
+      username,
+    );
+  }
+
+  @override
+  ProfileProvider getProviderOverride(
+    covariant ProfileProvider provider,
+  ) {
+    return call(
+      provider.username,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'profileProvider';
+}
 
 /// See also [profile].
 class ProfileProvider extends AutoDisposeFutureProvider<ProfileResponse> {
+  /// See also [profile].
   ProfileProvider(
     this.username,
-  ) : super(
+  ) : super.internal(
           (ref) => profile(
             ref,
             username,
@@ -46,6 +89,8 @@ class ProfileProvider extends AutoDisposeFutureProvider<ProfileResponse> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$profileHash,
+          dependencies: ProfileFamily._dependencies,
+          allTransitiveDependencies: ProfileFamily._allTransitiveDependencies,
         );
 
   final String username;
@@ -63,38 +108,4 @@ class ProfileProvider extends AutoDisposeFutureProvider<ProfileResponse> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef ProfileRef = AutoDisposeFutureProviderRef<ProfileResponse>;
-
-/// See also [profile].
-final profileProvider = ProfileFamily();
-
-class ProfileFamily extends Family<AsyncValue<ProfileResponse>> {
-  ProfileFamily();
-
-  ProfileProvider call(
-    String username,
-  ) {
-    return ProfileProvider(
-      username,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<ProfileResponse> getProviderOverride(
-    covariant ProfileProvider provider,
-  ) {
-    return call(
-      provider.username,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'profileProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

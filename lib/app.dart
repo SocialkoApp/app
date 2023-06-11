@@ -2,10 +2,10 @@ import 'package:app/auth/screens/email_confirmation.screen.dart';
 import 'package:app/auth/screens/forgot_password.screen.dart';
 import 'package:app/common/globals.dart';
 import 'package:app/common/screens/base.screen.dart';
-import 'package:app/cult/screens/create.screen.dart';
-import 'package:app/cult/screens/edit_cult.screen.dart';
-import 'package:app/cult/screens/join_requests.screen.dart';
-import 'package:app/cult/screens/members.screen.dart';
+import 'package:app/organization/screens/create.screen.dart';
+import 'package:app/organization/screens/edit_org.screen.dart';
+import 'package:app/organization/screens/join_requests.screen.dart';
+import 'package:app/organization/screens/members.screen.dart';
 import 'package:app/home/screens/create_image_post.screen.dart';
 import 'package:app/home/screens/create_text_post.screen.dart';
 import 'package:app/auth/screens/register.screen.dart';
@@ -43,10 +43,10 @@ class App extends StatelessWidget {
         MembersScreen.routeName: (context) => const MembersScreen(),
         JoinRequestsScreen.routeName: (context) => const JoinRequestsScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
-        EditCultScreen.routeName: (context) => const EditCultScreen(),
+        EditOrgScreen.routeName: (context) => const EditOrgScreen(),
         ForgotPasswordScreen.routeName: (context) =>
             const ForgotPasswordScreen(),
-        CreateCultScreen.routeName: (context) => const CreateCultScreen(),
+        CreateOrgScreen.routeName: (context) => const CreateOrgScreen(),
         EmailConfirmationScreen.routeName: (context) =>
             const EmailConfirmationScreen(),
       },
