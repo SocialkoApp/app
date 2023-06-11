@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app/utils/api/api.client.dart';
 import 'package:app/auth/api/models/login.dto.dart';
 

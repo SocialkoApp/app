@@ -1,21 +1,12 @@
-import 'package:app/auth/api/models/forgot_password.dto.dart';
 import 'package:app/auth/screens/login.screen.dart';
 import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/utils/api/api.dart';
-import 'package:app/auth/api/models/login.dto.dart';
-import 'package:app/auth/api/models/login.response.dart';
-import 'package:app/auth/api/models/send_confirmation_email.dto.dart';
 import 'package:app/utils/api/exceptions/bad_request.exception.dart';
-import 'package:app/utils/api/exceptions/forbidden.exception.dart';
-import 'package:app/common/screens/initializing.screen.dart';
-import 'package:app/utils/api/exceptions/unauthorized.exception.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:app/auth/widgets/input.widget.dart';
 import 'package:app/common/button.widget.dart';
 import 'package:app/utils/snackbar.util.dart';
 import 'package:flutter/material.dart';
-
-import 'register.screen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});

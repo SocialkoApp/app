@@ -1,5 +1,4 @@
 import 'package:app/common/screens/error.screen.dart';
-import 'package:app/common/screens/loading.screen.dart';
 import 'package:app/home/providers/posts.provider.dart';
 import 'package:app/home/screens/post.screen.dart';
 import 'package:app/home/utils/post.data.dart';

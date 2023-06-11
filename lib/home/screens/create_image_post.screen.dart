@@ -1,11 +1,8 @@
 import 'dart:io';
 
 import 'package:app/common/widgets/back.widget.dart';
-import 'package:app/home/api/models/create_post.dto.dart';
-import 'package:app/home/api/models/image.response.dart';
 import 'package:app/home/providers/posts.provider.dart';
 import 'package:app/profile/widgets/input.widget.dart';
-import 'package:app/utils/api/api.client.dart';
 import 'package:app/utils/assets.util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
