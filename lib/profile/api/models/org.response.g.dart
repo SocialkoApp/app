@@ -11,7 +11,7 @@ ProfileOrg _$ProfileOrgFromJson(Map<String, dynamic> json) => ProfileOrg(
           ? null
           : OrganizationResponse.fromJson(
               json['organization'] as Map<String, dynamic>),
-      role: json['role'] as String,
+      role: json['role'] as String?,
     );
 
 Map<String, dynamic> _$ProfileOrgToJson(ProfileOrg instance) =>

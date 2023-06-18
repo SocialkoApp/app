@@ -8,10 +8,11 @@ part of 'org_join_request.response.dart';
 
 OrgJoinRequest _$OrgJoinRequestFromJson(Map<String, dynamic> json) =>
     OrgJoinRequest(
-      org: OrganizationResponse.fromJson(json['org'] as Map<String, dynamic>),
+      organization: OrganizationResponse.fromJson(
+          json['organization'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OrgJoinRequestToJson(OrgJoinRequest instance) =>
     <String, dynamic>{
-      'org': instance.org,
+      'organization': instance.organization,
     };

@@ -11,7 +11,7 @@ class ProfileOrg {
   });
 
   final OrganizationResponse? organization;
-  final String role;
+  final String? role;
 
   factory ProfileOrg.fromJson(Map<String, dynamic> json) =>
       _$ProfileOrgFromJson(json);

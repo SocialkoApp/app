@@ -33,11 +33,16 @@ class MeInput extends StatelessWidget {
           cursorColor: AppAssets.colors.lightHighlight,
           maxLines: maxLines,
           maxLength: maxLength,
+          style: TextStyle(
+            color: AppAssets.colors.light,
+            fontSize: 16.0,
+          ),
           decoration: AppAssets.styles.inputDecoration.copyWith(
             labelText: helper,
             labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
               color: AppAssets.colors.light,
+              fontSize: 16.0,
             ),
           ),
         ),

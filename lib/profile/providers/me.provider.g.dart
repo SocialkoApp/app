@@ -6,7 +6,7 @@ part of 'me.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$asyncMeHash() => r'b8ac50293f64da695c5332f9a063b78f1126e6e1';
+String _$asyncMeHash() => r'60a2dc0b11c0d4674c29e777a03de43e1ffeafde';
 
 /// See also [AsyncMe].
 @ProviderFor(AsyncMe)

@@ -6,10 +6,10 @@ part 'org_join_request.response.g.dart';
 @JsonSerializable()
 class OrgJoinRequest {
   OrgJoinRequest({
-    required this.org,
+    required this.organization,
   });
 
-  final OrganizationResponse org;
+  final OrganizationResponse organization;
 
   factory OrgJoinRequest.fromJson(Map<String, dynamic> json) =>
       _$OrgJoinRequestFromJson(json);

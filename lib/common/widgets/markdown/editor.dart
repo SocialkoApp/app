@@ -365,6 +365,10 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
             // style: widget.textStyle ?? Theme.of(context).textTheme.bodyMedium,
             cursorColor: AppAssets.colors.primary,
             textDirection: widget.textDirection,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: AppAssets.colors.light,
+            ),
             decoration: AppAssets.styles.inputDecoration.copyWith(
               hintStyle: const TextStyle(
                 color: Color.fromRGBO(63, 61, 86, 0.5),

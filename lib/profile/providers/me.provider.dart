@@ -16,7 +16,7 @@ class AsyncMe extends _$AsyncMe {
 
   @override
   FutureOr<ProfileResponse> build() async {
-    return _fetchMe();
+    return await _fetchMe();
   }
 
   Future<void> updateProfilePicture(File file) async {
@@ -35,7 +35,7 @@ class AsyncMe extends _$AsyncMe {
     state = await AsyncValue.guard(() async {
       await API.profile.update.details(body);
 
-      return _fetchMe();
+      return await _fetchMe();
     });
   }
 
@@ -45,7 +45,7 @@ class AsyncMe extends _$AsyncMe {
     state = await AsyncValue.guard(() async {
       await API.orgs.manage.create(name, description, file);
 
-      return _fetchMe();
+      return await _fetchMe();
     });
   }
 }

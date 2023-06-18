@@ -18,31 +18,34 @@ class HomeScreen extends ConsumerWidget {
     final p = ref.watch(asyncMeProvider);
 
     return p.when(
-      loading: () => const LoadingScreen(),
-      error: (err, stack) => ErrorScreen(error: err),
-      data: (profile) => Scaffold(
-        backgroundColor: AppAssets.colors.dark,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40.0),
-            Header(profile: profile),
-            TopText(
-              isInOrg: profile.organization != null,
-              hasJoinRequest: profile.organizationJoinRequest != null,
+        loading: () => const LoadingScreen(),
+        error: (err, stack) => ErrorScreen(error: err),
+        data: (profile) {
+          print(profile);
+
+          return Scaffold(
+            backgroundColor: AppAssets.colors.dark,
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 40.0),
+                Header(profile: profile),
+                TopText(
+                  isInOrg: profile.organization != null,
+                  hasJoinRequest: profile.organizationJoinRequest != null,
+                ),
+                const SizedBox(height: 10.0),
+                profile.organization != null
+                    ? const PostsWidget()
+                    : profile.organizationJoinRequest == null
+                        ? const OrgsWidget()
+                        : OrganizationWidget(
+                            org: profile.organizationJoinRequest!.organization,
+                            onJoin: null,
+                          ),
+              ],
             ),
-            const SizedBox(height: 10.0),
-            profile.organization != null
-                ? const PostsWidget()
-                : profile.organizationJoinRequest == null
-                    ? const OrgsWidget()
-                    : OrganizationWidget(
-                        org: profile.organizationJoinRequest!.org,
-                        onJoin: null,
-                      ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }

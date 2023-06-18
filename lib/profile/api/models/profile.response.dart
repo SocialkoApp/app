@@ -8,18 +8,6 @@ part 'profile.response.g.dart';
 
 @JsonSerializable()
 class ProfileResponse {
-  ProfileResponse({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.bio,
-    required this.user,
-    required this.profilePicture,
-    required this.organization,
-    required this.organizationJoinRequest,
-    required this.updatedAt,
-  });
-
   final String id;
 
   final String firstName;
@@ -34,6 +22,18 @@ class ProfileResponse {
   final OrgJoinRequest? organizationJoinRequest;
 
   final String? updatedAt;
+
+  ProfileResponse({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.bio,
+    required this.user,
+    required this.profilePicture,
+    required this.organization,
+    required this.organizationJoinRequest,
+    required this.updatedAt,
+  });
 
   factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
       _$ProfileResponseFromJson(json);
